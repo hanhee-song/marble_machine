@@ -12,11 +12,14 @@ class Soundboard extends React.Component {
   }
   
   componentDidMount() {
-    const interval = setInterval(() => {
-      this.setState({ currentBeat: this.state.currentBeat + 1 });
-      console.log(this.state.currentBeat);
-    }, this.state.tempo);
-    this.setState({ interval });
+    setTimeout(() => {
+      const interval = setInterval(() => {
+        const nextBeat = this.state.currentBeat === 128 ? 0 : this.state.currentBeat + 1;
+        this.setState({ currentBeat: nextBeat });
+      }, this.state.tempo);
+      this.setState({ interval });
+      
+    }, 1000);
   }
   
   render () {
