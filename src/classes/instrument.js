@@ -1,6 +1,7 @@
 class Instrument {
-  constructor() {
-    this.beat = new Array(128);
+  constructor(mm) {
+    this.beat = new Array(mm);
+    this.mm = mm;
     for (var i = 0; i < this.beat.length; i++) {
       this.beat[i] = new Set();
     }

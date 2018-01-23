@@ -1,12 +1,17 @@
 import React from 'react';
-import Vibraphone from '../classes/vibraphone.js';
+import Vibraphone from '../classes/vibraphone';
+import Line from './line';
 
 class VibraphoneBoard extends React.Component {
   constructor(props) {
     super(props);
-    this.vibraphone = new Vibraphone();
+    this.vibraphone = new Vibraphone(this.props.mm);
+    this.notes = ["b2", "c2", "d2", "e2",
+    "fs2", "g3", "a3", "b3", "c3", "d3", "e3"];
     this.state = {
+      
     };
+    this.renderLines = this.renderLines.bind(this);
   }
   
   componentDidMount() {
@@ -25,9 +30,19 @@ class VibraphoneBoard extends React.Component {
     }
   }
   
+  renderLines() {
+    return this.notes.map((note) => {
+      return (
+        <Line note={note}
+          key={note}
+          currentBeat={this.props.currentBeat} />
+      );
+    });
+  }
+  
   render () {
     return (
-      <div>Vibraphone</div>
+      <div>{this.renderLines()}</div>
     );
   }
 }
