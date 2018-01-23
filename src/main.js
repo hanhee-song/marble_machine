@@ -1,3 +1,4 @@
+const Soundboard = require("./soundboard.js");
 const instruments = require("./instrument.js");
 const Vibraphone = instruments.Vibraphone;
 

@@ -47,6 +47,7 @@ module.exports = {
 };
 
 },{}],2:[function(require,module,exports){
+const Soundboard = require("./soundboard.js");
 const instruments = require("./instrument.js");
 const Vibraphone = instruments.Vibraphone;
 
@@ -71,4 +72,15 @@ document.addEventListener("DOMContentLoaded", () => {
   vibraphone.addNote("a3", 14);
 });
 
-},{"./instrument.js":1}]},{},[2]);
+},{"./instrument.js":1,"./soundboard.js":3}],3:[function(require,module,exports){
+class Soundboard {
+  constructor() {
+    
+  }
+  
+  
+}
+
+module.exports = Soundboard;
+
+},{}]},{},[2]);
