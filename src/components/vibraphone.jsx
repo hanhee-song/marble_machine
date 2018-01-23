@@ -1,6 +1,15 @@
 import React from 'react';
+import Vibraphone from '../classes/instrument.js';
 
-class Vibraphone extends React.Component {
+class VibraphoneBoard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.vibraphone = new Vibraphone();
+    this.state = {
+      
+    };
+  }
+  
   render () {
     return (
       <div>Vibraphone</div>
@@ -8,4 +17,4 @@ class Vibraphone extends React.Component {
   }
 }
 
-export default Vibraphone;
+export default VibraphoneBoard;
