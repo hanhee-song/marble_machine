@@ -14,7 +14,7 @@ class DrumsBoard extends React.Component {
   
   componentWillReceiveProps(nextProps) {
     if (this.props.currentBeat !== nextProps.currentBeat) {
-      this.drums.play(this.props.currentBeat);
+      this.drums.play(nextProps.currentBeat);
     }
   }
   

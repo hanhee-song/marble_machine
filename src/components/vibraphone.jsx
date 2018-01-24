@@ -15,7 +15,7 @@ class VibraphoneBoard extends React.Component {
   
   componentWillReceiveProps(nextProps) {
     if (this.props.currentBeat !== nextProps.currentBeat) {
-      this.vibraphone.play(this.props.currentBeat);
+      this.vibraphone.play(nextProps.currentBeat);
     }
   }
   
