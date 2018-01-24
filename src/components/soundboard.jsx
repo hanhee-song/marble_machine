@@ -8,7 +8,7 @@ class Soundboard extends React.Component {
     this.state = {
       currentBeat: -1,
       interval: null,
-      tempo: 105,
+      tempo: 102,
       mm: 128,
     };
     this.handlePause = this.handlePause.bind(this);
