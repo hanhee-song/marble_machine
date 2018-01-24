@@ -9,21 +9,23 @@ class Line extends React.Component {
     // this.props.currentBeat;
     this.renderSquares = this.renderSquares.bind(this);
     this.state = {
-      squares: {}
+      line: this.props.vibraphone.getLine(this.props.note),
     };
+    this.updateNotes = this.updateNotes.bind(this);
   }
   
   componentDidMount() {
-    setTimeout(() => {
-      this.props.vibraphone.addNote("a3", 16);
-    }, 1000);
+    this.updateNotes();
+  }
+  
+  updateNotes() {
+    this.setState({ line: this.props.vibraphone.getLine(this.props.note) });
   }
   
   renderSquares() {
-    return this.props.vibraphone.getLine(this.props.note).map((bool, i) => {
+    return this.state.line.map((bool, i) => {
       const current = this.props.currentBeat === i ? "current" : "";
       const active = bool ? "active" : "";
-      console.log(active);
       return (
         <div className={`line-square wide ${current} ${active}`}
           key={i}>

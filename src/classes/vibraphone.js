@@ -4,6 +4,7 @@ class Vibraphone extends Instrument {
   constructor(props) {
     super(props);
     this.setup();
+    this.initializeMarble();
   }
   
   setup() {
@@ -13,6 +14,15 @@ class Vibraphone extends Instrument {
       this.sounds[note] = new Audio(`audio/vib_${note}.wav`);
       this.sounds[note].url = `public/audio/vib_${note}.wav`;
     });
+  }
+  
+  initializeMarble() {
+    this.addNote("e3", 0);
+    this.addNote("e2", 4);
+    this.addNote("b2", 4);
+    this.addNote("b3", 6);
+    this.addNote("e2", 12);
+    this.addNote("a3", 14);
   }
 }
 
