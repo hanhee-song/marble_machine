@@ -12,7 +12,14 @@ class Instrument {
     Object.keys(this.sounds).forEach((note) => {
       setTimeout(() => {
         this.sounds[note].preload = "auto";
-      }, Math.random() * 1000);
+        const vol = this.sounds[note].volume;
+        this.sounds[note].volume = 0.00;
+        this.sounds[note].play();
+        setTimeout(() => {
+          this.sounds[note].pause();
+          this.sounds[note].volume = vol;
+        }, 1000);
+      }, Math.random() * 2000);
     });
   }
   
