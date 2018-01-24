@@ -43,8 +43,8 @@ class Line extends React.Component {
   
   renderSquares() {
     return this.state.line.map((bool, i) => {
-      const current = Math.floor(this.props.currentBeat / 2) === i ? "current" : "";
       const active = bool ? "active" : "";
+      const current = Math.floor(this.props.currentBeat / 2) === i && active ? "current" : "";
       return (
         <div className={`line-square wide ${current} ${active}`}
           key={i}>
