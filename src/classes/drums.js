@@ -14,7 +14,7 @@ class Drums extends Instrument {
       this.sounds[note].url = `public/audio/drums_${note}.wav`;
     });
     this.sounds["snare"].volume = 0.22;
-    this.sounds["hat"].volume = 0.1;
+    this.sounds["hat"].volume = 0.13;
   }
   
   initializeMarble() {
@@ -57,11 +57,23 @@ class Drums extends Instrument {
     this.addNote("hat", 16);
     this.addNote("hat", 24);
     this.addNote("hat", 28);
+    
     this.addNote("hat", 32 + 2);
     this.addNote("hat", 32 + 8);
     this.addNote("hat", 32 + 16);
     this.addNote("hat", 32 + 24);
     this.addNote("hat", 32 + 28);
+    
+    this.addNote("hat", 66);
+    this.addNote("hat", 72);
+    this.addNote("hat", 82);
+    this.addNote("hat", 86);
+    this.addNote("hat", 90);
+    this.addNote("hat", 94);
+    
+    this.addNote("hat", 100);
+    this.addNote("hat", 108);
+    this.addNote("hat", 120);
     
     // this.addNote("crash", 0);
   }
