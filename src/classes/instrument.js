@@ -29,7 +29,9 @@ class Instrument {
   }
   
   getLine(note) {
-    return this.beat.map((set) => set.has(note));
+    return this.beat
+      .filter((_, i) => i % 2 === 0)
+      .map(set => set.has(note));
   }
 }
 

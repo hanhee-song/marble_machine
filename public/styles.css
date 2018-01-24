@@ -49,6 +49,10 @@ table {
 
 /*****************************************************/
 
+* {
+  box-sizing: border-box;
+}
+
 .soundboard {
   
 }
@@ -58,5 +62,34 @@ table {
 }
 
 .line {
-  
+  display: flex;
+  flex-shrink: 0;
+  border: 1px solid red;
+  height: 20px;
+}
+
+.line-note-title {
+  width: 50px;
+}
+
+.line-square {
+  border: 1px solid blue;
+  height: 100%;
+  width: 10px;
+}
+
+.line-square.wide {
+  width: 20px;
+}
+
+.line-square.current {
+  background-color: yellow;
+}
+
+.line-square.active {
+  background-color: orange;
+}
+
+.line-square.active.current {
+  background-color: red;
 }

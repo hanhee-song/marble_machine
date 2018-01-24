@@ -13,12 +13,20 @@ class Line extends React.Component {
     };
   }
   
+  componentDidMount() {
+    setTimeout(() => {
+      this.props.vibraphone.addNote("a3", 16);
+    }, 1000);
+  }
+  
   renderSquares() {
     return this.props.vibraphone.getLine(this.props.note).map((bool, i) => {
+      const current = this.props.currentBeat === i ? "current" : "";
+      const active = bool ? "active" : "";
+      console.log(active);
       return (
-        <div className="line-square"
+        <div className={`line-square wide ${current} ${active}`}
           key={i}>
-          s
         </div>
       );
     });
@@ -27,6 +35,7 @@ class Line extends React.Component {
   render () {
     return (
       <div className="line">
+        <div className="line-note-title">{this.props.note}</div>
         {this.renderSquares()}
       </div>
     );
