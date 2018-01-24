@@ -3,13 +3,13 @@ import React from 'react';
 class Line extends React.Component {
   constructor(props) {
     super(props);
-    // this.props.vibraphone;
+    // this.props.instrument;
     // this.props.mm;
     // this.props.note;
     // this.props.currentBeat;
     this.renderSquares = this.renderSquares.bind(this);
     this.state = {
-      line: this.props.vibraphone.getLine(this.props.note),
+      line: this.props.instrument.getLine(this.props.note),
     };
     this.updateNotes = this.updateNotes.bind(this);
   }
@@ -19,7 +19,7 @@ class Line extends React.Component {
   }
   
   updateNotes() {
-    this.setState({ line: this.props.vibraphone.getLine(this.props.note) });
+    this.setState({ line: this.props.instrument.getLine(this.props.note) });
   }
   
   renderSquares() {

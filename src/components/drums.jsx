@@ -1,5 +1,6 @@
 import React from 'react';
 import Drums from '../classes/drums';
+import Line from './line';
 
 class DrumsBoard extends React.Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class DrumsBoard extends React.Component {
     return this.notes.map((note) => {
       return (
         <Line note={note}
-          drums={this.drums}
+          instrument={this.drums}
           key={note}
           mm={this.props.mm}
           currentBeat={Math.floor(this.props.currentBeat / 2)} />

@@ -23,7 +23,7 @@ class VibraphoneBoard extends React.Component {
     return this.notes.map((note) => {
       return (
         <Line note={note}
-          vibraphone={this.vibraphone}
+          instrument={this.vibraphone}
           key={note}
           mm={this.props.mm}
           currentBeat={Math.floor(this.props.currentBeat / 2)} />
