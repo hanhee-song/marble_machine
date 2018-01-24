@@ -14,10 +14,23 @@ class Line extends React.Component {
     this.updateNotes = this.updateNotes.bind(this);
   }
   
-  shouldComponentUpdate() {
-    console.log(this.props.currentBeat % 2);
-    return this.props.currentBeat % 2 !== 0;
-    // return true;
+  shouldComponentUpdate(nextProps, nextState) {
+    // It should update only when
+    // 1. props' currentBeat is even
+    // 2. && there is a truthy value at this.state.line at prop's current beat
+    // 3. Even if the above two don't hold, we should update
+      // if the previous beat's was truthy
+      
+    return (
+      (
+        nextProps.currentBeat % 2 === 0
+        && this.state.line[Math.floor(nextProps.currentBeat / 2)]
+      ) ||
+      (
+        this.props.currentBeat % 2 === 1
+        && this.state.line[Math.floor(this.props.currentBeat / 2)]
+      )
+    );
   }
   
   componentDidMount() {
@@ -30,8 +43,7 @@ class Line extends React.Component {
   
   renderSquares() {
     return this.state.line.map((bool, i) => {
-      const halfBeat = Math.floor(this.props.currentBeat / 2);
-      const current = halfBeat === i ? "current" : "";
+      const current = Math.floor(this.props.currentBeat / 2) === i ? "current" : "";
       const active = bool ? "active" : "";
       return (
         <div className={`line-square wide ${current} ${active}`}
