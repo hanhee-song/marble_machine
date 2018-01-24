@@ -8,6 +8,14 @@ class Instrument {
     this.sounds = {};
   }
   
+  _preloadAudio() {
+    Object.keys(this.sounds).forEach((note) => {
+      setTimeout(() => {
+        this.sounds[note].preload = "auto";
+      }, Math.random() * 1000);
+    });
+  }
+  
   play(n) {
     this.beat[n].forEach((note) => {
       this.sounds[note].pause();
