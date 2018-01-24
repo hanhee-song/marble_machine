@@ -20,13 +20,12 @@ class DrumsBoard extends React.Component {
   
   renderLines() {
     return this.notes.map((note) => {
-      const currentBeat = note === "hat" ? this.props.currentBeat : Math.floor(this.props.currentBeat / 2);
       return (
         <Line note={note}
           instrument={this.drums}
           key={note}
           mm={this.props.mm}
-          currentBeat={currentBeat} />
+          currentBeat={this.props.currentBeat} />
       );
     });
   }

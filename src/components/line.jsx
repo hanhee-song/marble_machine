@@ -14,6 +14,12 @@ class Line extends React.Component {
     this.updateNotes = this.updateNotes.bind(this);
   }
   
+  shouldComponentUpdate() {
+    console.log(this.props.currentBeat % 2);
+    return this.props.currentBeat % 2 !== 0;
+    // return true;
+  }
+  
   componentDidMount() {
     this.updateNotes();
   }
@@ -24,7 +30,8 @@ class Line extends React.Component {
   
   renderSquares() {
     return this.state.line.map((bool, i) => {
-      const current = this.props.currentBeat === i ? "current" : "";
+      const halfBeat = Math.floor(this.props.currentBeat / 2);
+      const current = halfBeat === i ? "current" : "";
       const active = bool ? "active" : "";
       return (
         <div className={`line-square wide ${current} ${active}`}

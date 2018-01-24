@@ -26,7 +26,7 @@ class VibraphoneBoard extends React.Component {
           instrument={this.vibraphone}
           key={note}
           mm={this.props.mm}
-          currentBeat={Math.floor(this.props.currentBeat / 2)} />
+          currentBeat={this.props.currentBeat} />
       );
     });
   }
