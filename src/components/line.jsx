@@ -10,9 +10,11 @@ class Line extends React.Component {
     this.renderSquares = this.renderSquares.bind(this);
     this.state = {
       line: this.props.instrument.getLine(this.props.note),
+      muted: false,
     };
     this.updateNotes = this.updateNotes.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.toggleMute = this.toggleMute.bind(this);
   }
   
   shouldComponentUpdate(nextProps, nextState) {
@@ -47,6 +49,10 @@ class Line extends React.Component {
     this.setState({ line: this.props.instrument.getLine(this.props.note) });
   }
   
+  toggleMute() {
+    this.setState({ muted: !this.state.muted });
+  }
+  
   handleClick(i) {
     return () => {
       if (this.state.line[i]) {
@@ -77,6 +83,8 @@ class Line extends React.Component {
     return (
       <div className="line">
         <div className="line-note-title">{this.props.note}</div>
+        <div className="line-note-mute"
+          onClick={this.toggleMute}></div>
         {this.renderSquares()}
       </div>
     );
