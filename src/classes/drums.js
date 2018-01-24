@@ -14,8 +14,8 @@ class Drums extends Instrument {
       this.sounds[note] = new Audio(`audio/drums_${note}.wav`);
       this.sounds[note].url = `public/audio/drums_${note}.wav`;
     });
-    this.sounds["snare"].volume = 0.24;
-    this.sounds["hat"].volume = 0.08;
+    this.sounds["snare"].volume = 0.25;
+    this.sounds["hat"].volume = 0.10;
     this.sounds["crash"].volume= 0.2;
   }
   
