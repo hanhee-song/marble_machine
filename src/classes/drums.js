@@ -14,7 +14,7 @@ class Drums extends Instrument {
       this.sounds[note].url = `public/audio/drums_${note}.wav`;
     });
     this.sounds["snare"].volume = 0.22;
-    this.sounds["hat"].volume = 0.13;
+    this.sounds["hat"].volume = 0.08;
   }
   
   initializeMarble() {
