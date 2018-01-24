@@ -32,6 +32,7 @@ class Vibraphone extends Instrument {
     this.addNote("b3", 22);
     this.addNote("g3", 26);
     this.addNote("a3", 28);
+    this.addNote("e2", 28);
     this.addNote("b2", 28);
     this.addNote("d3", 30);
     
@@ -49,24 +50,28 @@ class Vibraphone extends Instrument {
     this.addNote("fs2", 54);
     this.addNote("g3", 58);
     this.addNote("a3", 60);
+    this.addNote("d2", 60);
     this.addNote("b2", 60);
     this.addNote("d3", 62);
     
     this.addNote("fs2", 68);
+    this.addNote("d2", 68);
     this.addNote("b2", 68);
     this.addNote("b3", 70);
     this.addNote("fs2", 76);
+    this.addNote("d2", 76);
     this.addNote("b2", 76);
     this.addNote("d3", 78);
     
     this.addNote("c3", 80);
     this.addNote("b3", 82);
     this.addNote("fs2", 84);
+    this.addNote("d2", 84);
     this.addNote("b2", 84);
     this.addNote("a3", 86);
     this.addNote("g3", 90);
     this.addNote("a3", 92);
-    this.addNote("fs2", 92);
+    this.addNote("d2", 92);
     this.addNote("b2", 92);
     this.addNote("e2", 94);
     
