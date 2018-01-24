@@ -1,21 +1,19 @@
 import React from 'react';
-import Vibraphone from '../classes/vibraphone';
-import Line from './line';
+import Drums from '../classes/drums';
 
-class VibraphoneBoard extends React.Component {
+class DrumsBoard extends React.Component {
   constructor(props) {
     super(props);
     // this.props.currentBeat;
     // this.props.mm;
-    this.vibraphone = new Vibraphone(this.props.mm);
-    this.notes = ["b2", "c2", "d2", "e2",
-    "fs2", "g3", "a3", "b3", "c3", "d3", "e3"].reverse();
+    this.drums = new Drums(this.props.mm);
+    this.notes = ["kick", "snare", "bass", "crash"];
     this.renderLines = this.renderLines.bind(this);
   }
   
   componentWillReceiveProps(nextProps) {
     if (this.props.currentBeat !== nextProps.currentBeat) {
-      this.vibraphone.play(this.props.currentBeat);
+      this.drums.play(this.props.currentBeat);
     }
   }
   
@@ -23,7 +21,7 @@ class VibraphoneBoard extends React.Component {
     return this.notes.map((note) => {
       return (
         <Line note={note}
-          vibraphone={this.vibraphone}
+          drums={this.drums}
           key={note}
           mm={this.props.mm}
           currentBeat={Math.floor(this.props.currentBeat / 2)} />
@@ -33,11 +31,11 @@ class VibraphoneBoard extends React.Component {
   
   render () {
     return (
-      <div className="vibraphone">
-        {this.renderLines()}
+      <div>
+        drums
       </div>
     );
   }
 }
 
-export default VibraphoneBoard;
+export default DrumsBoard;

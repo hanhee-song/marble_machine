@@ -1,5 +1,6 @@
 import React from 'react';
 import VibraphoneBoard from './vibraphone';
+import DrumsBoard from './drums';
 
 class Soundboard extends React.Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class Soundboard extends React.Component {
     return (
       <div className="soundboard">
         <VibraphoneBoard currentBeat={this.state.currentBeat} mm={this.state.mm} />
+        <DrumsBoard currentBeat={this.state.currentBeat} mm={this.state.mm} />
       </div>
     );
   }
