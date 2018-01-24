@@ -8,7 +8,7 @@ class Drums extends Instrument {
   }
   
   setup() {
-    const notes = ["kick", "snare", "bass", "crash"];
+    const notes = ["kick", "snare", "hat", "crash"];
     notes.forEach((note) => {
       this.sounds[note] = new Audio(`audio/drums_${note}.wav`);
       this.sounds[note].url = `public/audio/drums_${note}.wav`;
@@ -16,7 +16,12 @@ class Drums extends Instrument {
   }
   
   initializeMarble() {
-    
+    for (let i = 0; i < 16; i++) {
+      this.addNote("snare", 8 * i + 4);
+    }
+    for (let i = 0; i < 16; i++) {
+      this.addNote("kick", 8 * i);
+    }
   }
 }
 

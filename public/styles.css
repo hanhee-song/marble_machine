@@ -63,7 +63,6 @@ table {
 
 .line {
   display: flex;
-  flex-shrink: 0;
   border: 1px solid red;
   height: 20px;
 }
@@ -76,18 +75,21 @@ table {
   border: 1px solid blue;
   height: 100%;
   width: 10px;
+  transition: background .1s;
 }
 
 .line-square.wide {
   width: 20px;
 }
 
-.line-square.current {
-  background-color: yellow;
-}
-
 .line-square.active {
   background-color: orange;
+  transition: 1s;
+}
+
+.line-square.current {
+  background-color: yellow;
+  transition: none;
 }
 
 .line-square.active.current {

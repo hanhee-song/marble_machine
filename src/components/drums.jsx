@@ -8,7 +8,7 @@ class DrumsBoard extends React.Component {
     // this.props.currentBeat;
     // this.props.mm;
     this.drums = new Drums(this.props.mm);
-    this.notes = ["kick", "snare", "bass", "crash"];
+    this.notes = ["kick", "snare", "hat", "crash"];
     this.renderLines = this.renderLines.bind(this);
   }
   
@@ -20,20 +20,21 @@ class DrumsBoard extends React.Component {
   
   renderLines() {
     return this.notes.map((note) => {
+      const currentBeat = note === "hat" ? this.props.currentBeat : Math.floor(this.props.currentBeat / 2);
       return (
         <Line note={note}
           instrument={this.drums}
           key={note}
           mm={this.props.mm}
-          currentBeat={Math.floor(this.props.currentBeat / 2)} />
+          currentBeat={currentBeat} />
       );
     });
   }
   
   render () {
     return (
-      <div>
-        drums
+      <div className="drums">
+        {this.renderLines()}
       </div>
     );
   }
