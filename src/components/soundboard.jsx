@@ -6,7 +6,7 @@ class Soundboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentBeat: 0,
+      currentBeat: -1,
       interval: null,
       tempo: 105,
       mm: 128,
@@ -21,7 +21,7 @@ class Soundboard extends React.Component {
         this.setState({ currentBeat: nextBeat });
       }, this.state.tempo);
       this.setState({ interval });
-    }, 1000);
+    }, 2000);
   }
   
   render () {

@@ -13,6 +13,8 @@ class Drums extends Instrument {
       this.sounds[note] = new Audio(`audio/drums_${note}.wav`);
       this.sounds[note].url = `public/audio/drums_${note}.wav`;
     });
+    this.sounds["snare"].volume = 0.22;
+    this.sounds["hat"].volume = 0.1;
   }
   
   initializeMarble() {
@@ -24,9 +26,44 @@ class Drums extends Instrument {
     this.addNote("snare", 114);
     this.addNote("snare", 120);
     
-    for (let i = 0; i < 16; i++) {
-      this.addNote("kick", 8 * i);
-    }
+    this.addNote("kick", 0);
+    this.addNote("kick", 8);
+    this.addNote("kick", 16);
+    this.addNote("kick", 22);
+    this.addNote("kick", 26);
+    
+    this.addNote("kick", 32);
+    this.addNote("kick", 40);
+    this.addNote("kick", 48);
+    this.addNote("kick", 58);
+    this.addNote("kick", 62);
+    
+    this.addNote("kick", 64);
+    this.addNote("kick", 72);
+    this.addNote("kick", 80);
+    this.addNote("kick", 82);
+    this.addNote("kick", 86);
+    this.addNote("kick", 90);
+    
+    this.addNote("kick", 96);
+    this.addNote("kick", 100);
+    this.addNote("kick", 110);
+    this.addNote("kick", 116);
+    this.addNote("kick", 122);
+    // this.addNote("kick", 126);
+    
+    this.addNote("hat", 2);
+    this.addNote("hat", 8);
+    this.addNote("hat", 16);
+    this.addNote("hat", 24);
+    this.addNote("hat", 28);
+    this.addNote("hat", 32 + 2);
+    this.addNote("hat", 32 + 8);
+    this.addNote("hat", 32 + 16);
+    this.addNote("hat", 32 + 24);
+    this.addNote("hat", 32 + 28);
+    
+    // this.addNote("crash", 0);
   }
 }
 
