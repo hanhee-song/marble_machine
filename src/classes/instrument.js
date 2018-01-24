@@ -2,6 +2,7 @@ class Instrument {
   constructor(mm) {
     this.beat = new Array(mm);
     this.mm = mm;
+    this.muted = new Set();
     for (var i = 0; i < this.beat.length; i++) {
       this.beat[i] = new Set();
     }
@@ -25,9 +26,11 @@ class Instrument {
   
   play(n) {
     this.beat[n].forEach((note) => {
-      this.sounds[note].pause();
-      this.sounds[note].currentTime = 0;
-      this.sounds[note].play();
+      if (!this.isMuted(note)) {
+        this.sounds[note].pause();
+        this.sounds[note].currentTime = 0;
+        this.sounds[note].play();
+      }
     });
   }
   
@@ -47,6 +50,32 @@ class Instrument {
     return this.beat
       .filter((_, i) => i % 2 === 0)
       .map(set => set.has(note));
+  }
+  
+  mute(note) {
+    if (note) {
+      this.muted.add(note);
+    } else {
+      Object.keys(this.sounds).forEach((n) => {
+        this.muted.add(n);
+      });
+    }
+  }
+  
+  unmute(note) {
+    if (note) {
+      this.muted.delete(note);
+    } else {
+      this.muted.clear();
+    }
+  }
+  
+  isMuted(note) {
+    if (note) {
+      return this.muted.has(note);
+    } else {
+      return this.muted.size === this.sounds.size;
+    }
   }
 }
 

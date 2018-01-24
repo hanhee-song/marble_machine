@@ -14,7 +14,7 @@ class Vibraphone extends Instrument {
     notes.forEach((note) => {
       this.sounds[note] = new Audio(`audio/vib_${note}.wav`);
       this.sounds[note].url = `public/audio/vib_${note}.wav`;
-      this.sounds[note].volume = 0.07;
+      this.sounds[note].volume = 0.14;
     });
   }
   
