@@ -49,6 +49,12 @@ table {
 
 /*****************************************************/
 
+html {
+  font-family: sans-serif;
+  background-color: #050505;
+  color: white;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -58,13 +64,20 @@ table {
 }
 
 .vibraphone {
-  
+  margin-top: 50px;
+}
+
+.drums {
+  margin-top: 50px;
 }
 
 .line {
   display: flex;
-  border: 1px solid red;
   height: 20px;
+}
+
+.line:nth-of-type(2n + 1) {
+  background-color: #151515;
 }
 
 .line-note-title {
@@ -72,10 +85,18 @@ table {
 }
 
 .line-square {
-  border: 1px solid blue;
+  cursor: pointer;
   height: 100%;
   width: 10px;
-  transition: background .1s;
+  transition: background 1s;
+}
+
+.line-square.start-measure {
+  border-left: 2px solid white;
+}
+
+.line-square:last-of-type {
+  border-right: 2px solid white;
 }
 
 .line-square.wide {
@@ -84,11 +105,11 @@ table {
 
 .line-square.active {
   background-color: orange;
-  transition: 1s;
+  /* transition: background 1s; */
 }
 
 .line-square.current {
-  background-color: yellow;
+  /* background-color: yellow; */
   transition: none;
 }
 

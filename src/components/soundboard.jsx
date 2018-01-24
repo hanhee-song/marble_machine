@@ -21,7 +21,7 @@ class Soundboard extends React.Component {
         this.setState({ currentBeat: nextBeat });
       }, this.state.tempo);
       this.setState({ interval });
-    }, 2000);
+    }, 3000);
   }
   
   render () {

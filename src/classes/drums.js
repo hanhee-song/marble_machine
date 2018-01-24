@@ -16,6 +16,7 @@ class Drums extends Instrument {
     });
     this.sounds["snare"].volume = 0.22;
     this.sounds["hat"].volume = 0.08;
+    this.sounds["crash"].volume= 0.2;
   }
   
   initializeMarble() {

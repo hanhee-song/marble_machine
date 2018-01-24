@@ -12,6 +12,7 @@ class Line extends React.Component {
       line: this.props.instrument.getLine(this.props.note),
     };
     this.updateNotes = this.updateNotes.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
   
   shouldComponentUpdate(nextProps, nextState) {
@@ -20,6 +21,8 @@ class Line extends React.Component {
     // 2. && there is a truthy value at this.state.line at prop's current beat
     // 3. Even if the above two don't hold, we should update
       // if the previous beat's was truthy
+    // 4. We should also be able to update the component when state.line
+    // has changed
       
     return (
       (
@@ -29,6 +32,9 @@ class Line extends React.Component {
       (
         this.props.currentBeat % 2 === 1
         && this.state.line[Math.floor(this.props.currentBeat / 2)]
+      ) ||
+      (
+        JSON.stringify(this.state.line) !== JSON.stringify(nextState.line)
       )
     );
   }
@@ -41,12 +47,26 @@ class Line extends React.Component {
     this.setState({ line: this.props.instrument.getLine(this.props.note) });
   }
   
+  handleClick(i) {
+    return () => {
+      if (this.state.line[i]) {
+        this.props.instrument.removeNote(this.props.note, i * 2);
+        this.setState({ line: this.props.instrument.getLine(this.props.note) });
+      } else {
+        this.props.instrument.addNote(this.props.note, i * 2);
+        this.setState({ line: this.props.instrument.getLine(this.props.note) });
+      }
+    };
+  }
+  
   renderSquares() {
     return this.state.line.map((bool, i) => {
       const active = bool ? "active" : "";
       const current = Math.floor(this.props.currentBeat / 2) === i && active ? "current" : "";
+      const measureStart = i % 8 === 0 ? "start-measure" : "";
       return (
-        <div className={`line-square wide ${current} ${active}`}
+        <div className={`line-square wide ${current} ${active} ${measureStart}`}
+          onClick={this.handleClick(i)}
           key={i}>
         </div>
       );
