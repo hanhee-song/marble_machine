@@ -25,7 +25,7 @@ class Soundboard extends React.Component {
   
   render () {
     return (
-      <div>
+      <div className="soundboard">
         <VibraphoneBoard currentBeat={this.state.currentBeat} mm={this.state.mm} />
       </div>
     );

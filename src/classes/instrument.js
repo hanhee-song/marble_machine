@@ -23,6 +23,14 @@ class Instrument {
   removeNote(note, beat) {
     this.beat[beat].delete(note);
   }
+  
+  getNotes(beat) {
+    return this.beat[beat]; // returns a Set
+  }
+  
+  getLine(note) {
+    return this.beat.map((set) => set.has(note));
+  }
 }
 
 export default Instrument;
