@@ -18,25 +18,28 @@ class Line extends React.Component {
   }
   
   shouldComponentUpdate(nextProps, nextState) {
-    // It should update only when
-    // 1. props' currentBeat is even
-    // 2. && there is a truthy value at this.state.line at prop's current beat
-    // 3. Even if the above two don't hold, we should update
-      // if the previous beat's was truthy
-    // 4. We should also be able to update the component when state.line
-    // has changed
-      
     return (
+      // It should update only when
+      // 1. props' currentBeat is even
+      // 2. && there is a truthy value at this.state.line at prop's current beat
       (
         nextProps.currentBeat % 2 === 0
         && this.state.line[Math.floor(nextProps.currentBeat / 2)]
       ) ||
+      // 3. Even if the above two don't hold, we should update
+      // if the previous beat's was truthy
       (
         this.props.currentBeat % 2 === 1
         && this.state.line[Math.floor(this.props.currentBeat / 2)]
       ) ||
+      // 4. We should also be able to update the component when state.line
+      // has changed
       (
         JSON.stringify(this.state.line) !== JSON.stringify(nextState.line)
+      ) ||
+      // 5. We should also update if state.muted has changed
+      (
+        this.state.muted !== nextState.muted
       )
     );
   }
@@ -50,17 +53,25 @@ class Line extends React.Component {
   }
   
   toggleMute() {
-    this.setState({ muted: !this.state.muted });
+    const instrument = this.props.instrument;
+    if (instrument.isMuted(this.props.note)) {
+      instrument.unmute(this.props.note);
+    } else {
+      instrument.mute(this.props.note);
+    }
+    this.setState({ muted: instrument.isMuted(this.props.note) });
   }
   
   handleClick(i) {
+    const instrument = this.props.instrument;
+    const note = this.props.note;
     return () => {
       if (this.state.line[i]) {
-        this.props.instrument.removeNote(this.props.note, i * 2);
-        this.setState({ line: this.props.instrument.getLine(this.props.note) });
+        instrument.removeNote(note, i * 2);
+        this.setState({ line: instrument.getLine(note) });
       } else {
-        this.props.instrument.addNote(this.props.note, i * 2);
-        this.setState({ line: this.props.instrument.getLine(this.props.note) });
+        instrument.addNote(note, i * 2);
+        this.setState({ line: instrument.getLine(note) });
       }
     };
   }
@@ -80,11 +91,14 @@ class Line extends React.Component {
   }
   
   render () {
+    const muted = this.state.muted ? "muted" : "";
     return (
       <div className="line">
         <div className="line-note-title">{this.props.note}</div>
-        <div className="line-note-mute"
-          onClick={this.toggleMute}></div>
+        <div className={`line-note-mute ${muted}`}
+          onClick={this.toggleMute}>
+          <i className={`fa fa-volume-${muted ? "off" : "up"}`} aria-hidden="true"></i>
+        </div>
         {this.renderSquares()}
       </div>
     );
