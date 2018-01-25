@@ -14,8 +14,8 @@ class Drums extends Instrument {
       this.sounds[note] = new Audio(`audio/drums_${note}.wav`);
       this.sounds[note].url = `public/audio/drums_${note}.wav`;
     });
-    this.sounds["snare"].volume = 0.25;
-    this.sounds["hat"].volume = 0.10;
+    this.sounds["snare"].volume = 0.27;
+    this.sounds["hat"].volume = 0.12;
     this.sounds["crash"].volume= 0.2;
   }
   
@@ -27,6 +27,7 @@ class Drums extends Instrument {
     this.addNote("snare", 110);
     this.addNote("snare", 114);
     this.addNote("snare", 120);
+    this.addNote("snare", 126);
     
     this.addNote("kick", 0);
     this.addNote("kick", 8);
@@ -64,7 +65,7 @@ class Drums extends Instrument {
     this.addNote("hat", 32 + 8);
     this.addNote("hat", 32 + 16);
     this.addNote("hat", 32 + 24);
-    this.addNote("hat", 32 + 28);
+    this.addNote("hat", 32 + 30);
     
     this.addNote("hat", 66);
     this.addNote("hat", 72);
@@ -76,6 +77,7 @@ class Drums extends Instrument {
     this.addNote("hat", 100);
     this.addNote("hat", 108);
     this.addNote("hat", 120);
+    this.addNote("hat", 124);
     
     // this.addNote("crash", 0);
   }
