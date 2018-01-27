@@ -9,14 +9,14 @@ class App extends Component {
         
         <Soundboard />
           
-        <div class="name">
+        <div className="footer">
           Hanhee Song
-        </div>
-        <div class="about-me">
-          <a href="https://hanhee-song.com" target="_blank"><i class="fa fa-home" aria-hidden="true"></i></a>
-          <a href="https://github.com/hanhee-song/project-visualizer" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
-          <a href="https://www.linkedin.com/in/hanhee-song" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-          <a href="mailto:song.hanhee@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;<div class="text">song.hanhee@gmail.com</div> </a>
+          <div className="about-me">
+            <a href="https://hanhee-song.com" rel="noopener noreferrer" target="_blank"><i className="fa fa-home" aria-hidden="true"></i></a>
+            <a href="https://github.com/hanhee-song/marble_machine" rel="noopener noreferrer" target="_blank"><i className="fa fa-github" aria-hidden="true"></i></a>
+            <a href="https://www.linkedin.com/in/hanhee-song" rel="noopener noreferrer" target="_blank"><i className="fa fa-linkedin" aria-hidden="true"></i></a>
+            <a href="mailto:song.hanhee@gmail.com"><i className="fa fa-envelope" aria-hidden="true"></i>&nbsp;<div className="text">song.hanhee@gmail.com</div> </a>
+          </div>
         </div>
       </div>
     );
