@@ -55,14 +55,64 @@ button {
 }
 
 html {
-  font-family: sans-serif;
+  font-family: 'VT323', monospace;
   background-color: #050505;
-  color: white;
+  color: #fff;
 }
 
 * {
   box-sizing: border-box;
 }
+
+a {
+  color: #888;
+  text-decoration: none;
+  transition: color 1s;
+}
+
+a:hover {
+  color: #fff;
+  transition: none;
+}
+
+.title {
+  margin-top: 50px;
+  font-size: 64px;
+  text-align: center;
+}
+
+.name {
+  padding-top: 20px;
+  font-size: 22px;
+  text-align: center;
+  color: #c5c5c5;
+}
+
+.about-me {
+  width: 300px;
+  margin: auto;
+  margin-bottom: 50px;
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.about-me a {
+  display: flex;
+}
+
+.about-me .fa {
+  text-align: center;
+  min-width: 22px;
+}
+
+.about-me a:hover .fa {
+  font-size: 19px;
+}
+
+/************ SOUNDBOARD ***************/
 
 .soundboard {
   margin-top: 30px;
@@ -111,7 +161,7 @@ html {
 }
 
 .line:nth-of-type(2n + 1) {
-  background-color: #151515;
+  background-color: #191919;
 }
 
 .line-note-title {
