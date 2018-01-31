@@ -55,9 +55,12 @@ class Soundboard extends React.Component {
           <button className="soundboard-controls-start" onClick={this.toggleRunning}>
             <i className={`fa fa-${startButton}`} aria-hidden="true"></i>
           </button>
-          <input type="range" min="30" max="180"
-            value={this.state.tempo}
-            onChange={this.handleTempoChange}/>
+          <div className="soundboard-controls-tempo-container">
+            <div className="soundboard-controls-tempo-title">Tempo</div>
+            <input className="soundboard-controls-tempo-slider" type="range" min="30" max="180"
+              value={this.state.tempo}
+              onChange={this.handleTempoChange}/>
+          </div>
         </div>
         <div className="soundboard-instruments">
           <VibraphoneBoard currentBeat={this.state.currentBeat} mm={this.state.mm} />
