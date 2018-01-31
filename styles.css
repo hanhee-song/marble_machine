@@ -80,6 +80,7 @@ a:hover {
   font-size: 64px;
   text-align: center;
   max-width: 1400px;
+  user-select: none;
 }
 
 .footer {
@@ -117,17 +118,20 @@ a:hover {
 /************ SOUNDBOARD ***************/
 
 .soundboard {
-  margin-top: 30px;
+  margin-top: 0px;
+  user-select: none;
 }
 
 .soundboard-controls {
   padding: 20px;
-  margin-left: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .soundboard-controls-start {
-  background-color: #4a4a4a;
   cursor: pointer;
+  background-color: #777;
   height: 32px;
   width: 48px;
   border-radius: 5px;
@@ -137,12 +141,67 @@ a:hover {
 }
 
 .soundboard-controls-start:hover {
-  background-color: #6a6a6a;
+  background-color: #999;
 }
 
 .soundboard-controls-start:active {
-  background-color: #7a7a7a;
+  background-color: #aaa;
 }
+
+.soundboard-controls-tempo-container {
+  margin-left: 18px;
+  opacity: .8;
+  color: #ccc;
+}
+
+.soundboard-controls-tempo-container:hover {
+  margin-left: 18px;
+  opacity: 1;
+  transition: opacity .2s;
+  -webkit-transition: opacity .2s;
+}
+
+.soundboard-controls-tempo-title {
+  text-align: center;
+  margin-bottom: 4px;
+  font-size: 16px;
+}
+
+.soundboard-controls-tempo-slider {
+  cursor: pointer;
+  width: 250px;
+  height: 18px;
+  background: #454545;
+  outline: none;
+  /* opacity: 0.8;
+  -webkit-transition: .2s;
+  transition: opacity .2s; */
+  transform: scaleX(-1);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* .soundboard-controls-tempo-slider:hover {
+  opacity: 1;
+} */
+
+.soundboard-controls-tempo-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #bbb;
+  cursor: pointer;
+}
+
+.soundboard-controls-tempo-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: #bbb;
+  cursor: pointer;
+}
+
+/************* INSTRUMENTS **************/
 
 .soundboard-instruments {
   
