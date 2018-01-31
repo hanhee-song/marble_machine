@@ -139,10 +139,9 @@ a:hover {
   border-right: 2px solid #333;
   border-top: 2px solid #555;
   border-left: 2px solid #555;
-  /* border-radius: 5px; */
   line-height: 26px;
   text-align: center;
-  transition: background .2s;
+  transition: background .2s, border .2s;
 }
 
 .soundboard-controls-start:hover {
@@ -159,9 +158,9 @@ a:hover {
   border-right: 2px solid #777;
   border-top: 2px solid #555;
   border-left: 2px solid #555;
-  /* line-height: 30px; */
   padding-top: 2px;
   padding-left: 2px;
+  transition: border 0s;
 }
 
 .soundboard-controls-tempo-container {
@@ -253,8 +252,8 @@ a:hover {
   line-height: 19px;
   font-size: 12px;
   text-align: center;
-  transition: background-color .2s, color .2s;
-  -webkit-transition: background-color .2s, color .2s;
+  transition: background-color .2s, color .2s, border .2s;
+  -webkit-transition: background-color .2s, color .2s, border .2s;
 }
 
 .line-note-mute:hover {
