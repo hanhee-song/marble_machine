@@ -52,45 +52,165 @@ table {
 button {
   border: none;
   outline: none;
+  padding: 0;
 }
 
 html {
-  font-family: sans-serif;
+  font-family: 'VT323', monospace;
   background-color: #050505;
-  color: white;
+  color: #fff;
 }
 
 * {
   box-sizing: border-box;
 }
 
+a {
+  color: #888;
+  text-decoration: none;
+  transition: color 1s;
+}
+
+a:hover {
+  color: #fff;
+  transition: none;
+}
+
+.title {
+  margin-top: 50px;
+  font-size: 64px;
+  text-align: center;
+  max-width: 1400px;
+  user-select: none;
+}
+
+.footer {
+  padding-top: 20px;
+  font-size: 22px;
+  text-align: center;
+  color: #c5c5c5;
+  max-width: 1400px;
+}
+
+.about-me {
+  width: 300px;
+  margin: auto;
+  margin-bottom: 50px;
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.about-me a {
+  display: flex;
+}
+
+.about-me .fa {
+  text-align: center;
+  min-width: 22px;
+}
+
+.about-me a:hover .fa {
+  font-size: 19px;
+}
+
+/************ SOUNDBOARD ***************/
+
 .soundboard {
-  margin-top: 30px;
+  margin-top: 0px;
+  user-select: none;
 }
 
 .soundboard-controls {
-  padding: 20px;
-  margin-left: 40px;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .soundboard-controls-start {
-  background-color: #4a4a4a;
   cursor: pointer;
+  background-color: #777;
   height: 32px;
-  width: 48px;
-  border-radius: 5px;
-  line-height: 32px;
+  width: 38px;
+  border-bottom: 2px solid #333;
+  border-right: 2px solid #333;
+  border-top: 2px solid #555;
+  border-left: 2px solid #555;
+  /* border-radius: 5px; */
+  line-height: 26px;
   text-align: center;
   transition: background .2s;
 }
 
 .soundboard-controls-start:hover {
-  background-color: #6a6a6a;
+  background-color: #999;
+  border-bottom: 2px solid #555;
+  border-right: 2px solid #555;
+  border-top: 2px solid #777;
+  border-left: 2px solid #777;
 }
 
 .soundboard-controls-start:active {
-  background-color: #7a7a7a;
+  background-color: #aaa;
+  border-bottom: 2px solid #777;
+  border-right: 2px solid #777;
+  border-top: 2px solid #555;
+  border-left: 2px solid #555;
+  /* line-height: 30px; */
+  padding-top: 2px;
+  padding-left: 2px;
 }
+
+.soundboard-controls-tempo-container {
+  margin-left: 18px;
+  opacity: .8;
+  color: #ccc;
+}
+
+.soundboard-controls-tempo-container:hover {
+  margin-left: 18px;
+  opacity: 1;
+  transition: opacity .2s;
+  -webkit-transition: opacity .2s;
+}
+
+.soundboard-controls-tempo-title {
+  text-align: center;
+  margin-bottom: 4px;
+  font-size: 16px;
+}
+
+.soundboard-controls-tempo-slider {
+  cursor: pointer;
+  width: 250px;
+  height: 18px;
+  background: #454545;
+  outline: none;
+  transform: scaleX(-1);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.soundboard-controls-tempo-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #bbb;
+  cursor: pointer;
+}
+
+.soundboard-controls-tempo-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: #bbb;
+  cursor: pointer;
+}
+
+/************* INSTRUMENTS **************/
 
 .soundboard-instruments {
   
@@ -107,35 +227,49 @@ html {
 .line {
   display: flex;
   height: 20px;
-  padding-left: 40px;
+  padding-left: 1%;
+  /* margin: 0 auto;
+  max-width: 1400px; */
 }
 
 .line:nth-of-type(2n + 1) {
-  background-color: #151515;
+  background-color: #191919;
 }
 
 .line-note-title {
-  width: 50px;
+  width: 40px;
+  min-width: 40px;
 }
 
 .line-note-mute {
   cursor: pointer;
-  border-radius: 50%;
-  background-color: #353535;
-  border-bottom: 1px solid #000;
-  border-right: 1px solid #000;
+  background-color: #454545;
+  border-bottom: 1px solid #222;
+  border-right: 1px solid #222;
   color: #fff;
-  height: 20px;
-  width: 20px;
-  margin-right: 10px;
-  line-height: 20px;
-  font-size: 14px;
+  height: 17px;
+  width: 19px;
+  margin-right: 5px;
+  line-height: 19px;
+  font-size: 12px;
   text-align: center;
+  transition: background-color .2s, color .2s;
+  -webkit-transition: background-color .2s, color .2s;
+}
+
+.line-note-mute:hover {
+  background-color: #656565;
+  border-bottom: 1px solid #333;
+  border-right: 1px solid #333;
 }
 
 .line-note-mute.muted {
-  background-color: #222;
+  background-color: #333;
   color: #bbb;
+}
+
+.line-note-mute.muted:hover {
+  background-color: #454545;
 }
 
 .line-square {
@@ -147,6 +281,7 @@ html {
 
 .line-square.start-measure {
   border-left: 2px solid #aaa;
+  width: 22px;
 }
 
 .line-square:last-of-type {
@@ -159,11 +294,9 @@ html {
 
 .line-square.active {
   background-color: #888;
-  /* transition: background 1s; */
 }
 
 .line-square.current {
-  /* background-color: yellow; */
   transition: none;
 }
 
