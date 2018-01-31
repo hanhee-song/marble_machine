@@ -26,8 +26,6 @@ class Soundboard extends React.Component {
       this.setState({ timeout });
     };
     timeoutCallback();
-    // const timeout = setTimeout(timeoutCallback, this.state.tempo);
-    // this.setState({ timeout });
   }
   
   handlePause() {
@@ -44,11 +42,12 @@ class Soundboard extends React.Component {
   }
   
   handleTempoChange(e) {
-    this.setState({ tempo: e.target.value });
+    this.setState({ tempo: Number(e.target.value) });
   }
   
   render () {
     const startButton = this.state.timeout ? "pause" : "play";
+    const tempo = Math.round(15000 / (this.state.tempo + 6));
     return (
       <div className="soundboard">
         <div className="soundboard-controls">
@@ -56,8 +55,9 @@ class Soundboard extends React.Component {
             <i className={`fa fa-${startButton}`} aria-hidden="true"></i>
           </button>
           <div className="soundboard-controls-tempo-container">
-            <div className="soundboard-controls-tempo-title">Tempo</div>
-            <input className="soundboard-controls-tempo-slider" type="range" min="30" max="180"
+            <div className="soundboard-controls-tempo-title">Tempo: {tempo}</div>
+            <input className="soundboard-controls-tempo-slider" type="range"
+              min="30" max="180" step="1"
               value={this.state.tempo}
               onChange={this.handleTempoChange}/>
           </div>
