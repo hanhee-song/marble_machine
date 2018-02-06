@@ -93,7 +93,7 @@ a:hover {
 }
 
 .about-me {
-  width: 300px;
+  max-width: 500px;
   margin: auto;
   margin-bottom: 50px;
   padding-top: 10px;
