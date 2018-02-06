@@ -124,6 +124,7 @@ a:hover {
 }
 
 .soundboard-controls {
+  max-width: 1400px;
   padding: 15px;
   display: flex;
   justify-content: center;
@@ -141,7 +142,7 @@ a:hover {
   border-left: 2px solid #555;
   line-height: 26px;
   text-align: center;
-  transition: background .2s, border .2s;
+  transition: background .8s, border .8s;
 }
 
 .soundboard-controls-start:hover {
@@ -150,6 +151,8 @@ a:hover {
   border-right: 2px solid #555;
   border-top: 2px solid #777;
   border-left: 2px solid #777;
+  transition: none;
+  -webkit-transition: none;
 }
 
 .soundboard-controls-start:active {
@@ -167,13 +170,15 @@ a:hover {
   margin-left: 18px;
   opacity: .8;
   color: #ccc;
+  transition: opacity .8s;
+  -webkit-transition: opacity .8s;
 }
 
 .soundboard-controls-tempo-container:hover {
   margin-left: 18px;
   opacity: 1;
-  transition: opacity .2s;
-  -webkit-transition: opacity .2s;
+  transition: none;
+  -webkit-transition: none;
 }
 
 .soundboard-controls-tempo-title {
