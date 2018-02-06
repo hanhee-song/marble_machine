@@ -232,8 +232,6 @@ a:hover {
   display: flex;
   height: 20px;
   padding-left: 1%;
-  /* margin: 0 auto;
-  max-width: 1400px; */
 }
 
 .line:nth-of-type(2n + 1) {
@@ -280,7 +278,7 @@ a:hover {
   cursor: pointer;
   height: 100%;
   width: 10px;
-  transition: background .3s;
+  transition: background 1s;
 }
 
 .line-square.start-measure {
@@ -301,6 +299,10 @@ a:hover {
 }
 
 .line-square.current {
+  transition: none;
+}
+
+.line-square.active:hover {
   transition: none;
 }
 
