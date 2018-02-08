@@ -6,11 +6,11 @@ class Drums extends Instrument {
     this.setup();
     this.initializeMarble();
     this._preloadAudio();
+    this.notes = ["kick", "snare", "hat", "crash"];
   }
   
   setup() {
-    const notes = ["kick", "snare", "hat", "crash"];
-    notes.forEach((note) => {
+    this.notes.forEach((note) => {
       this.sounds[note] = new Audio(`audio/drums_${note}.wav`);
       this.sounds[note].url = `public/audio/drums_${note}.wav`;
     });

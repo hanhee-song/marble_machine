@@ -6,6 +6,7 @@ class Instrument {
     for (var i = 0; i < this.beat.length; i++) {
       this.beat[i] = new Set();
     }
+    this.notes = [];
     this.sounds = {};
   }
   
@@ -22,6 +23,10 @@ class Instrument {
         }, 1000);
       }, Math.random() * 2000);
     });
+  }
+  
+  allNotes() {
+    return this.notes;
   }
   
   play(n) {
