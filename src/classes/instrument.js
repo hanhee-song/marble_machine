@@ -29,7 +29,7 @@ class Instrument {
     return this.notes;
   }
   
-  play(n) {
+  playAtBeat(n) {
     if (n === undefined) return;
     this.beat[n].forEach((note) => {
       if (!this.isMuted(note)) {
@@ -40,8 +40,15 @@ class Instrument {
     });
   }
   
+  playNote(note) {
+    this.sounds[note].pause();
+    this.sounds[note].currentTime = 0;
+    this.sounds[note].play();
+  }
+  
   addNote(note, beat) {
     this.beat[beat].add(note);
+    this.playNote(note);
   }
   
   removeNote(note, beat) {
