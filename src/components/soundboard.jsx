@@ -85,7 +85,10 @@ class Soundboard extends React.Component {
   handleUndo(e) {
     const instrumentUndos = {};
     this.state.instruments.forEach((instrument) => {
-      instrumentUndos[instrument.getMostRecentHistory()] = instrument;
+      const mostRecent = instrument.getMostRecentHistory();
+      if (mostRecent) {
+        instrumentUndos[mostRecent] = instrument;
+      }
     });
     const keys = Object.keys(instrumentUndos).map(time => Number(time));
     const max = Math.max.apply(null, keys);

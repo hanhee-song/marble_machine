@@ -57,6 +57,7 @@ class Line extends React.Component {
   
   componentDidMount() {
     this.updateNotes();
+    this.props.instrument.setUpdateComponentCallback(this.updateNotes, this.props.note);
   }
   
   updateNotes() {

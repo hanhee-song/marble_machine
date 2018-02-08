@@ -11,6 +11,7 @@ class Instrument {
     this.notes = [];
     this.sounds = {};
     this.history = [];
+    this.updateComponentCallbacks = {};
   }
   
   _preloadAudio() {
@@ -44,6 +45,10 @@ class Instrument {
     } else {
       return this.beatsArray.map(arr => arr.includes(note));
     }
+  }
+  
+  setUpdateComponentCallback(callback, note) {
+    this.updateComponentCallbacks[note] = callback;
   }
   
   // PLAY, ADD, REMOVE, CLEAR ================================
@@ -104,14 +109,18 @@ class Instrument {
     if (this.history.length > 0) {
       return this.history[this.history.length - 1].time;
     } else {
-      return null;
+      return -1;
     }
   }
   
   historyPop() {
-    const state = this.history.pop().state;
-    this.beatsArray = state;
-    console.log(state, this.beatsArray);
+    if (this.history.length > 1) {
+      const state = this.history.pop().state;
+      this.beatsArray = state;
+      Object.values(this.updateComponentCallbacks).forEach(callback => {
+        callback();
+      });
+    }
   }
   
   // MUTE FUNCTIONS ====================================
