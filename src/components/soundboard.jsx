@@ -1,6 +1,7 @@
 import React from 'react';
-import VibraphoneBoard from './vibraphone';
-import DrumsBoard from './drums';
+import Drums from '../classes/drums';
+import Vibraphone from '../classes/vibraphone';
+import InstrumentBoard from './instrument_board';
 
 class Soundboard extends React.Component {
   constructor(props) {
@@ -10,11 +11,16 @@ class Soundboard extends React.Component {
       timeout: null,
       tempo: 102,
       mm: 128,
+      instruments: [
+        new Vibraphone(128),
+        new Drums(128)
+      ]
     };
     this.handlePause = this.handlePause.bind(this);
     this.handleResume = this.handleResume.bind(this);
     this.toggleRunning = this.toggleRunning.bind(this);
     this.handleTempoChange = this.handleTempoChange.bind(this);
+    this.handleResetAll = this.handleResetAll.bind(this);
   }
     
   handleResume() {
@@ -45,6 +51,16 @@ class Soundboard extends React.Component {
     this.setState({ tempo: Number(e.target.value) });
   }
   
+  handleResetAll(e) {
+    // e.preventDefault()
+    this.setState({
+      currentBeat: -1,
+      timeout: null,
+      tempo: 102,
+      mm: 128,
+    });
+  }
+  
   render () {
     const startButton = this.state.timeout ? "pause" : "play";
     const tempo = Math.round(15000 / (this.state.tempo + 6));
@@ -63,8 +79,14 @@ class Soundboard extends React.Component {
           </div>
         </div>
         <div className="soundboard-instruments">
-          <VibraphoneBoard currentBeat={this.state.currentBeat} mm={this.state.mm} />
-          <DrumsBoard currentBeat={this.state.currentBeat} mm={this.state.mm} />
+          <InstrumentBoard
+            currentBeat={this.state.currentBeat}
+            mm={this.state.mm}
+            instrument={this.state.instruments[0]} />
+          <InstrumentBoard
+            currentBeat={this.state.currentBeat}
+            mm={this.state.mm}
+            instrument={this.state.instruments[1]} />
         </div>
       </div>
     );

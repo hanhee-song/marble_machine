@@ -3,13 +3,14 @@ import Instrument from './instrument';
 class Drums extends Instrument {
   constructor(props) {
     super(props);
+    // this.notes;
     this.setup();
     this.initializeMarble();
     this._preloadAudio();
-    this.notes = ["kick", "snare", "hat", "crash"];
   }
   
   setup() {
+    this.notes = ["kick", "snare", "hat", "crash"];
     this.notes.forEach((note) => {
       this.sounds[note] = new Audio(`audio/drums_${note}.wav`);
       this.sounds[note].url = `public/audio/drums_${note}.wav`;

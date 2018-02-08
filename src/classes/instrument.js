@@ -30,6 +30,7 @@ class Instrument {
   }
   
   play(n) {
+    if (n === undefined) return;
     this.beat[n].forEach((note) => {
       if (!this.isMuted(note)) {
         this.sounds[note].pause();
