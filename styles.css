@@ -85,7 +85,6 @@ a:hover {
 }
 
 .footer {
-  padding-top: 20px;
   font-size: 22px;
   text-align: center;
   color: #c5c5c5;
@@ -131,11 +130,12 @@ a:hover {
   align-items: center;
 }
 
-.soundboard-controls-start {
+.soundboard-controls-button {
   cursor: pointer;
   background-color: #777;
   height: 32px;
   width: 38px;
+  margin: 0 10px;
   border-bottom: 2px solid #333;
   border-right: 2px solid #333;
   border-top: 2px solid #555;
@@ -145,7 +145,7 @@ a:hover {
   transition: background .8s, border .8s;
 }
 
-.soundboard-controls-start:hover {
+.soundboard-controls-button:hover {
   background-color: #999;
   border-bottom: 2px solid #555;
   border-right: 2px solid #555;
@@ -155,7 +155,7 @@ a:hover {
   -webkit-transition: none;
 }
 
-.soundboard-controls-start:active {
+.soundboard-controls-button:active {
   background-color: #aaa;
   border-bottom: 2px solid #777;
   border-right: 2px solid #777;
@@ -220,13 +220,17 @@ a:hover {
   
 }
 
-.vibraphone {
+.soundboard-instruments > * {
+  margin-bottom: 30px;
+}
+
+/* .vibraphone {
   
 }
 
 .drums {
   margin-top: 30px;
-}
+} */
 
 .line {
   display: flex;
