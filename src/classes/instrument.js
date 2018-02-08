@@ -64,9 +64,11 @@ class Instrument {
   
   setMm(mm) {
     this.mm = mm;
-    this.beat = new Array(this.mm);
-    for (var i = 0; i < this.beat.length; i++) {
-      this.beat[i] = new Set();
+    const currentMm = this.beat.length;
+    if (mm > currentMm) {
+      for (var i = 0; i < mm - currentMm; i++) {
+        this.beat.push(new Set());
+      }
     }
   }
   
@@ -75,8 +77,11 @@ class Instrument {
   }
   
   getLine(note) {
-    return this.beat
-      .map(set => set.has(note));
+    if (this.beat.length > this.mm) {
+      return this.beat.slice(0, this.mm).map(set => set.has(note));
+    } else {
+      return this.beat.map(set => set.has(note));
+    }
   }
   
   mute(note) {

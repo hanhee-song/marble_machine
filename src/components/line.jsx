@@ -21,6 +21,9 @@ class Line extends React.Component {
     if (nextProps.currentBeat === -1) {
       this.updateNotes();
     }
+    if (nextProps.mm !== this.props.mm) {
+      this.updateNotes();
+    }
   }
   
   shouldComponentUpdate(nextProps, nextState) {

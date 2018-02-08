@@ -27,7 +27,7 @@ class Soundboard extends React.Component {
     
   handleResume() {
     const timeoutCallback = () => {
-      const nextBeat = this.state.currentBeat + 1 === this.state.mm
+      const nextBeat = this.state.currentBeat + 1 >= this.state.mm
       ? 0 : this.state.currentBeat + 1;
       this.setState({ currentBeat: nextBeat });
       const timeout = setTimeout(timeoutCallback, this.state.tempo);
@@ -105,8 +105,7 @@ class Soundboard extends React.Component {
             <input className="soundboard-controls-tempo-slider" type="range"
               min="60" max="360" step="1"
               value={this.state.tempo}
-              onChange={this.handleTempoChange}
-              disabled={this.state.timeout === null}/>
+              onChange={this.handleTempoChange}/>
           </div>
         </div>
         <div className="soundboard-instruments">
