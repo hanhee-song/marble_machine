@@ -1,13 +1,16 @@
+import { deepCopy } from '../util/deep_copy';
+
 class Instrument {
   constructor(mm) {
-    this.beat = new Array(mm);
+    this.beatsArray = new Array(mm);
     this.mm = mm;
     this.muted = new Set();
-    for (var i = 0; i < this.beat.length; i++) {
-      this.beat[i] = new Set();
+    for (var i = 0; i < this.beatsArray.length; i++) {
+      this.beatsArray[i] = [];
     }
     this.notes = [];
     this.sounds = {};
+    this.history = [];
   }
   
   _preloadAudio() {
@@ -25,13 +28,35 @@ class Instrument {
     });
   }
   
+  // DISPLAY FOR REACT COMPONENT =============================
+  
   allNotes() {
     return this.notes;
   }
   
+  getNotes(beat) {
+    return this.beatsArray[beat];
+  }
+  
+  getLine(note) {
+    if (this.beatsArray.length > this.mm) {
+      return this.beatsArray.slice(0, this.mm).map(arr => arr.includes(note));
+    } else {
+      return this.beatsArray.map(arr => arr.includes(note));
+    }
+  }
+  
+  // PLAY, ADD, REMOVE, CLEAR ================================
+  
+  playNote(note) {
+    this.sounds[note].pause();
+    this.sounds[note].currentTime = 0;
+    this.sounds[note].play();
+  }
+  
   playAtBeat(n) {
     if (n === undefined) return;
-    this.beat[n].forEach((note) => {
+    this.beatsArray[n].forEach((note) => {
       if (!this.isMuted(note)) {
         this.sounds[note].pause();
         this.sounds[note].currentTime = 0;
@@ -40,49 +65,56 @@ class Instrument {
     });
   }
   
-  playNote(note) {
-    this.sounds[note].pause();
-    this.sounds[note].currentTime = 0;
-    this.sounds[note].play();
-  }
-  
   addNote(note, beat) {
-    this.beat[beat].add(note);
-    // this.playNote(note);
+    if (!this.beatsArray[beat].includes(note)) {
+      this.historyPush();
+      this.beatsArray[beat].push(note);
+    }
   }
   
   removeNote(note, beat) {
-    this.beat[beat].delete(note);
+    if (this.beatsArray[beat].includes(note)) {
+      this.historyPush();
+      this.beatsArray[beat] = this.beatsArray[beat].filter(n => n !== note);
+    }
   }
   
   clearAllNotes() {
-    this.beat = new Array(this.mm);
-    for (var i = 0; i < this.beat.length; i++) {
-      this.beat[i] = new Set();
+    this.historyPush();
+    this.beatsArray = new Array(this.mm);
+    for (var i = 0; i < this.beatsArray.length; i++) {
+      this.beatsArray[i] = [];
     }
   }
   
-  setMm(mm) {
-    this.mm = mm;
-    const currentMm = this.beat.length;
-    if (mm > currentMm) {
-      for (var i = 0; i < mm - currentMm; i++) {
-        this.beat.push(new Set());
-      }
+  // HISTORY ===========================================
+  
+  historyPush() {
+    const newEntry = {
+      time: new Date().getTime(),
+      state: deepCopy(this.beatsArray),
+    };
+    this.history.push(newEntry);
+    if (this.history.length > 40) {
+      this.history = this.history.slice(1);
     }
   }
   
-  getNotes(beat) {
-    return this.beat[beat]; // returns a Set
-  }
-  
-  getLine(note) {
-    if (this.beat.length > this.mm) {
-      return this.beat.slice(0, this.mm).map(set => set.has(note));
+  getMostRecentHistory() {
+    if (this.history.length > 0) {
+      return this.history[this.history.length - 1].time;
     } else {
-      return this.beat.map(set => set.has(note));
+      return null;
     }
   }
+  
+  historyPop() {
+    const state = this.history.pop().state;
+    this.beatsArray = state;
+    console.log(state, this.beatsArray);
+  }
+  
+  // MUTE FUNCTIONS ====================================
   
   mute(note) {
     if (note) {
@@ -107,6 +139,18 @@ class Instrument {
       return this.muted.has(note);
     } else {
       return this.muted.size === this.sounds.size;
+    }
+  }
+  
+  // MISC ===================================================
+  
+  setMm(mm) {
+    this.mm = mm;
+    const currentMm = this.beatsArray.length;
+    if (mm > currentMm) {
+      for (var i = 0; i < mm - currentMm; i++) {
+        this.beatsArray.push([]);
+      }
     }
   }
 }

@@ -23,6 +23,7 @@ class Soundboard extends React.Component {
     this.handleStop = this.handleStop.bind(this);
     this.handleResetAll = this.handleResetAll.bind(this);
     this.handleMmChange = this.handleMmChange.bind(this);
+    this.handleUndo = this.handleUndo.bind(this);
   }
     
   handleResume() {
@@ -81,6 +82,19 @@ class Soundboard extends React.Component {
     }
   }
   
+  handleUndo(e) {
+    const instrumentUndos = {};
+    this.state.instruments.forEach((instrument) => {
+      instrumentUndos[instrument.getMostRecentHistory()] = instrument;
+    });
+    const keys = Object.keys(instrumentUndos).map(time => Number(time));
+    const max = Math.max.apply(null, keys);
+    const mostRecentInstrument = instrumentUndos[max];
+    if (mostRecentInstrument) {
+      mostRecentInstrument.historyPop();
+    }
+  }
+  
   render () {
     const startButton = this.state.timeout ? "pause" : "play";
     const tempo = Math.round(30000 / (this.state.tempo + 12));
@@ -92,6 +106,9 @@ class Soundboard extends React.Component {
           </button>
           <button className="soundboard-controls-button" onClick={this.handleStop}>
             <i className={`fa fa-stop`} aria-hidden="true"></i>
+          </button>
+          <button className="soundboard-controls-button" onClick={this.handleUndo}>
+            <i className={`fa fa-undo`} aria-hidden="true"></i>
           </button>
           <button className="soundboard-controls-button" onClick={this.handleResetAll}>
             <i className={`fa fa-refresh`} aria-hidden="true"></i>
