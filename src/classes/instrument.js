@@ -48,6 +48,13 @@ class Instrument {
     this.beat[beat].delete(note);
   }
   
+  clearAllNotes() {
+    this.beat = new Array(this.mm);
+    for (var i = 0; i < this.beat.length; i++) {
+      this.beat[i] = new Set();
+    }
+  }
+  
   getNotes(beat) {
     return this.beat[beat]; // returns a Set
   }

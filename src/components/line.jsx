@@ -17,6 +17,12 @@ class Line extends React.Component {
     this.toggleMute = this.toggleMute.bind(this);
   }
   
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.currentBeat === -1) {
+      this.updateNotes();
+    }
+  }
+  
   shouldComponentUpdate(nextProps, nextState) {
     return (
       // It should update only when
@@ -40,6 +46,11 @@ class Line extends React.Component {
       // 5. We should also update if state.muted has changed
       (
         this.state.muted !== nextState.muted
+      ) ||
+      // 6. We'll make it update when nextProps.currentBeat is -1
+        // i.e. the board was initialized OR reset
+      (
+        nextProps.currentBeat === -1
       )
     );
   }
@@ -68,11 +79,10 @@ class Line extends React.Component {
     return () => {
       if (this.state.line[i]) {
         instrument.removeNote(note, i * 2);
-        this.setState({ line: instrument.getLine(note) });
       } else {
         instrument.addNote(note, i * 2);
-        this.setState({ line: instrument.getLine(note) });
       }
+      this.updateNotes();
     };
   }
   
