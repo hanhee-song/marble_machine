@@ -9,11 +9,11 @@ class Soundboard extends React.Component {
     this.state = {
       currentBeat: -1,
       timeout: null,
-      tempo: 102,
-      mm: 128,
+      tempo: 204,
+      mm: 64,
       instruments: [
-        new Vibraphone(128),
-        new Drums(128)
+        new Vibraphone(64),
+        new Drums(64)
       ]
     };
     this.handlePause = this.handlePause.bind(this);
@@ -22,6 +22,7 @@ class Soundboard extends React.Component {
     this.handleTempoChange = this.handleTempoChange.bind(this);
     this.handleStop = this.handleStop.bind(this);
     this.handleResetAll = this.handleResetAll.bind(this);
+    this.handleMmChange = this.handleMmChange.bind(this);
   }
     
   handleResume() {
@@ -62,17 +63,27 @@ class Soundboard extends React.Component {
     this.setState({
       currentBeat: -1,
       timeout: null,
-      tempo: 102,
-      mm: 128,
+      tempo: 204,
+      mm: 64,
     });
     this.state.instruments.forEach((instrument) => {
       instrument.clearAllNotes();
     });
   }
   
+  handleMmChange(e) {
+    const input = e.target.value;
+    if (input == parseInt(input)) {
+      this.setState({ mm: parseInt(input) });
+      this.state.instruments.forEach((instrument) => {
+        instrument.setMm(parseInt(input));
+      });
+    }
+  }
+  
   render () {
     const startButton = this.state.timeout ? "pause" : "play";
-    const tempo = Math.round(15000 / (this.state.tempo + 6));
+    const tempo = Math.round(30000 / (this.state.tempo + 12));
     return (
       <div className="soundboard">
         <div className="soundboard-controls">
@@ -85,12 +96,17 @@ class Soundboard extends React.Component {
           <button className="soundboard-controls-button" onClick={this.handleResetAll}>
             <i className={`fa fa-refresh`} aria-hidden="true"></i>
           </button>
+          <input className="sounboard-controls-input"
+            onChange={this.handleMmChange}
+            value={this.state.mm}
+            />
           <div className="soundboard-controls-tempo-container">
             <div className="soundboard-controls-tempo-title">Tempo: {tempo}</div>
             <input className="soundboard-controls-tempo-slider" type="range"
-              min="30" max="180" step="1"
+              min="60" max="360" step="1"
               value={this.state.tempo}
-              onChange={this.handleTempoChange}/>
+              onChange={this.handleTempoChange}
+              disabled={this.state.timeout === null}/>
           </div>
         </div>
         <div className="soundboard-instruments">

@@ -1,5 +1,4 @@
 import React from 'react';
-// import Drums from '../classes/drums';
 import Line from './line';
 
 class DrumsBoard extends React.Component {

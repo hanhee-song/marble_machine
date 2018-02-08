@@ -26,19 +26,16 @@ class Line extends React.Component {
   shouldComponentUpdate(nextProps, nextState) {
     return (
       // It should update only when
-      // 1. props' currentBeat is even
-      // 2. && there is a truthy value at this.state.line at prop's current beat
+      // 1. There is a truthy value at this.state.line at prop's current beat
       (
-        nextProps.currentBeat % 2 === 0
-        && this.state.line[Math.floor(nextProps.currentBeat / 2)]
+        this.state.line[nextProps.currentBeat]
       ) ||
-      // 3. Even if the above two don't hold, we should update
+      // 2. Even if the above doesn't hold, we should update
       // if the previous beat's was truthy
       (
-        this.props.currentBeat % 2 === 1
-        && this.state.line[Math.floor(this.props.currentBeat / 2)]
+        this.state.line[this.props.currentBeat]
       ) ||
-      // 4. We should also be able to update the component when state.line
+      // 3. We should also be able to update the component when state.line
       // has changed
       (
         JSON.stringify(this.state.line) !== JSON.stringify(nextState.line)
@@ -78,9 +75,11 @@ class Line extends React.Component {
     const note = this.props.note;
     return () => {
       if (this.state.line[i]) {
-        instrument.removeNote(note, i * 2);
+        instrument.removeNote(note, i);
+        instrument.playNote(note);
       } else {
-        instrument.addNote(note, i * 2);
+        instrument.addNote(note, i);
+        instrument.playNote(note);
       }
       this.updateNotes();
     };
@@ -89,7 +88,7 @@ class Line extends React.Component {
   renderSquares() {
     return this.state.line.map((bool, i) => {
       const active = bool ? "active" : "";
-      const current = Math.floor(this.props.currentBeat / 2) === i && active ? "current" : "";
+      const current = this.props.currentBeat === i && active ? "current" : "";
       const measureStart = i % 8 === 0 ? "start-measure" : "";
       return (
         <div className={`line-square wide ${current} ${active} ${measureStart}`}

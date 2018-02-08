@@ -48,7 +48,7 @@ class Instrument {
   
   addNote(note, beat) {
     this.beat[beat].add(note);
-    this.playNote(note);
+    // this.playNote(note);
   }
   
   removeNote(note, beat) {
@@ -62,13 +62,20 @@ class Instrument {
     }
   }
   
+  setMm(mm) {
+    this.mm = mm;
+    this.beat = new Array(this.mm);
+    for (var i = 0; i < this.beat.length; i++) {
+      this.beat[i] = new Set();
+    }
+  }
+  
   getNotes(beat) {
     return this.beat[beat]; // returns a Set
   }
   
   getLine(note) {
     return this.beat
-      .filter((_, i) => i % 2 === 0)
       .map(set => set.has(note));
   }
   
