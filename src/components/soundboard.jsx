@@ -20,6 +20,7 @@ class Soundboard extends React.Component {
     this.handleResume = this.handleResume.bind(this);
     this.toggleRunning = this.toggleRunning.bind(this);
     this.handleTempoChange = this.handleTempoChange.bind(this);
+    this.handleStop = this.handleStop.bind(this);
     this.handleResetAll = this.handleResetAll.bind(this);
   }
     
@@ -51,6 +52,11 @@ class Soundboard extends React.Component {
     this.setState({ tempo: Number(e.target.value) });
   }
   
+  handleStop(e) {
+    this.handlePause();
+    this.setState({ currentBeat: -1 });
+  }
+  
   handleResetAll(e) {
     this.handlePause();
     this.setState({
@@ -72,6 +78,9 @@ class Soundboard extends React.Component {
         <div className="soundboard-controls">
           <button className="soundboard-controls-button" onClick={this.toggleRunning}>
             <i className={`fa fa-${startButton}`} aria-hidden="true"></i>
+          </button>
+          <button className="soundboard-controls-button" onClick={this.handleStop}>
+            <i className={`fa fa-stop`} aria-hidden="true"></i>
           </button>
           <button className="soundboard-controls-button" onClick={this.handleResetAll}>
             <i className={`fa fa-refresh`} aria-hidden="true"></i>
