@@ -9,6 +9,7 @@
   },
   "homepage": "https://hanhee-song.github.io/marble_machine",
   "scripts": {
+    "sass": "node-sass scss -o public --watch",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

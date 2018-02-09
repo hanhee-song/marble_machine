@@ -95,7 +95,7 @@ class Line extends React.Component {
       const current = this.props.currentBeat === i && active ? "current" : "";
       const measureStart = i % 8 === 0 ? "start-measure" : "";
       return (
-        <div className={`line-square wide ${current} ${active} ${measureStart}`}
+        <div className={`square wide ${active} ${current} ${measureStart}`}
           onClick={this.handleClick(i)}
           key={i}>
         </div>
@@ -107,8 +107,8 @@ class Line extends React.Component {
     const muted = this.state.muted ? "muted" : "";
     return (
       <div className="line">
-        <div className="line-note-title">{this.props.note}</div>
-        <div className={`line-note-mute ${muted}`}
+        <div className="note-title">{this.props.note}</div>
+        <div className={`note-mute ${muted}`}
           onClick={this.toggleMute}>
           <i className={`fa fa-volume-${muted ? "off" : "up"}`} aria-hidden="true"></i>
         </div>

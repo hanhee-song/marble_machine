@@ -1,0 +1,348 @@
+/***************************************/
+/***************************************/
+/* NB: EDIT STYLES IN SCSS/STYLES.SCSS */
+/***************************************/
+/***************************************/
+
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/*****************************************************/
+
+button {
+  border: none;
+  outline: none;
+  padding: 0;
+}
+
+html {
+  font-family: 'VT323', monospace;
+  background-color: #050505;
+  color: #fff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: #888;
+  text-decoration: none;
+  transition: color 1s;
+}
+
+a:hover {
+  color: #fff;
+  transition: none;
+}
+
+.title {
+  margin: auto;
+  margin-top: 50px;
+  font-size: 64px;
+  text-align: center;
+  max-width: 1400px;
+  user-select: none;
+}
+
+.footer {
+  margin: auto;
+  font-size: 22px;
+  text-align: center;
+  color: #c5c5c5;
+  max-width: 1400px;
+  
+  .about-me {
+    max-width: 500px;
+    margin: auto;
+    margin-bottom: 50px;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    line-height: 20px;
+    
+    a {
+      display: flex;
+      
+      .fa {
+        text-align: center;
+        min-width: 22px;
+      }
+      
+      &:hover .fa {
+        font-size: 19px;
+      }
+    }
+  }
+}
+
+/************ SOUNDBOARD ***************/
+
+.soundboard {
+  margin-top: 0px;
+  user-select: none;
+}
+
+.soundboard-controls {
+  margin: auto;
+  max-width: 1400px;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  .control {
+    height: 40px;
+    background: none;
+    border-top: 2px solid #555;
+    border-bottom: 2px solid #555;
+    color: #ccc;
+    transition: background .8s;
+    -webkit-transition: background .8s;
+  }
+  
+  .square {
+    width: 48px;
+    text-align: center;
+  }
+  
+  .button {
+    cursor: pointer;
+    line-height: 36px;
+    font-size: 14px;
+    text-rendering: optimizeSpeed;
+    
+    &:hover {
+      background-color: #555;
+      transition: none;
+      -webkit-transition: none;
+    }
+    
+    &:active {
+      background-color: #777;
+      padding-top: 1px;
+      padding-left: 1px;
+    }
+  }
+  
+  .input {
+    outline: none;
+    font-family: 'VT323', monospace;
+    border-left: 0;
+    border-right: 0;
+    line-height: 36px;
+    font-size: 20px;
+    
+    &:hover {
+      background-color: #555;
+      color: #ddd;
+      transition: none;
+      -webkit-transition: none;
+    }
+    
+    &:focus {
+      background-color: #555;
+      color: #ddd;
+    }
+  }
+  
+  // TEMPO ====================
+  
+  .tempo-container {
+    position: relative;
+    
+    &:hover {
+      transition: none;
+      -webkit-transition: none;
+      background-color: #444;
+    }
+    
+    .tempo-title {
+      text-align: center;
+      font-size: 16px;
+    }
+    
+    .tempo-slider {
+      position: relative;
+      bottom: -2px;
+      margin: 0;
+      cursor: pointer;
+      width: 200px;
+      height: 18px;
+      background: #454545;
+      outline: none;
+      transform: scaleX(-1);
+      -webkit-appearance: none;
+      appearance: none;
+      transition: background .8s;
+      -webkit-transition: background .8s;
+    }
+    
+    &:hover .tempo-slider {
+      background-color: #656565;
+      transition: none;
+      -webkit-transition: none;
+      
+    }
+    
+    .tempo-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      cursor: pointer;
+      background: #bbb;
+      width: 18px;
+      height: 18px;
+      transition: background .8s;
+      -webkit-transition: background .8s;
+    }
+    
+    &:hover .tempo-slider::-webkit-slider-thumb {
+      background: #ccc;
+    }
+    
+    .tempo-slider::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      background: #bbb;
+      cursor: pointer;
+    }
+    
+    &:hover .tempo-slider::-moz-range-thumb {
+      background: #ccc;
+    }
+  }
+}
+
+
+
+
+/************* INSTRUMENTS **************/
+
+.soundboard-instruments {
+  & > * {
+    margin-bottom: 30px;
+  }
+  
+  .line {
+    display: flex;
+    height: 20px;
+    padding-left: 1%;
+    
+    &:nth-of-type(2n + 1) {
+      background-color: #191919;
+    }
+  }
+  
+  .note-title {
+    width: 40px;
+    min-width: 40px;
+  }
+  
+  .note-mute {
+    cursor: pointer;
+    background-color: #454545;
+    border-bottom: 1px solid #222;
+    border-right: 1px solid #222;
+    color: #fff;
+    height: 17px;
+    width: 19px;
+    margin-right: 5px;
+    line-height: 19px;
+    font-size: 12px;
+    text-align: center;
+    transition: background-color .2s, color .2s, border .2s;
+    -webkit-transition: background-color .2s, color .2s, border .2s;
+    
+    &:hover {
+      background-color: #656565;
+      border-bottom: 1px solid #333;
+      border-right: 1px solid #333;
+    }
+    
+    &.muted {
+      background-color: #333;
+      color: #bbb;
+    }
+    
+    &.muted:hover {
+      background-color: #454545;
+    }
+  }
+  
+  // SQUARES ================
+  // NB: The order of the transitions really matters
+  // Don't delete or move code without testing everything
+  
+  .square {
+    cursor: pointer;
+    height: 100%;
+    transition: none;
+    width: 20px;
+    
+    &.start-measure {
+      border-left: 2px solid #aaa;
+      width: 22px;
+    }
+    
+    &:last-of-type {
+      border-right: 2px solid #aaa;
+    }
+    
+    &.active {
+      background-color: #888;
+      transition: background 1s;
+      
+      &:hover { transition: none; }
+      &.current { background-color: #fff; }
+    }
+    
+    &.current { transition: none; }
+  }
+}

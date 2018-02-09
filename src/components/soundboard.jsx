@@ -130,25 +130,25 @@ class Soundboard extends React.Component {
     return (
       <div className="soundboard">
         <div className="soundboard-controls">
-          <button className="soundboard-controls-button" onClick={this.toggleRunning}>
+          <button className="control square button" onClick={this.toggleRunning}>
             <i className={`fa fa-${startButton}`} aria-hidden="true"></i>
           </button>
-          <button className="soundboard-controls-button" onClick={this.handleStop}>
+          <button className="control square button" onClick={this.handleStop}>
             <i className={`fa fa-stop`} aria-hidden="true"></i>
           </button>
-          <button className="soundboard-controls-button" onClick={this.handleUndo}>
+          <button className="control square button" onClick={this.handleUndo}>
             <i className={`fa fa-undo`} aria-hidden="true"></i>
           </button>
-          <button className="soundboard-controls-button" onClick={this.handleResetAll}>
+          <button className="control square button" onClick={this.handleResetAll}>
             <i className={`fa fa-trash`} aria-hidden="true"></i>
           </button>
-          <input className="soundboard-controls-input"
+          <input className="control square input"
             onChange={this.handleMmChange}
             value={this.state.mm}
             />
-          <div className="soundboard-controls-tempo-container">
-            <div className="soundboard-controls-tempo-title">Tempo: {tempo}</div>
-            <input className="soundboard-controls-tempo-slider" type="range"
+          <div className="control tempo-container">
+            <div className="tempo-title">Tempo: {tempo}</div>
+            <input className="tempo-slider" type="range"
               min="60" max="360" step="1"
               value={this.state.tempo}
               onChange={this.handleTempoChange}/>
