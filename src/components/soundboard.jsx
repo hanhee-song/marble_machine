@@ -83,7 +83,6 @@ class Soundboard extends React.Component {
       currentBeat: -1,
       timeout: null,
       tempo: 204,
-      mm: 64,
     });
     this.state.instruments.forEach((instrument) => {
       instrument.clearAllNotes();
