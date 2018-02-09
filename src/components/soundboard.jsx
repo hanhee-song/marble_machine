@@ -140,9 +140,9 @@ class Soundboard extends React.Component {
             <i className={`fa fa-undo`} aria-hidden="true"></i>
           </button>
           <button className="soundboard-controls-button" onClick={this.handleResetAll}>
-            <i className={`fa fa-refresh`} aria-hidden="true"></i>
+            <i className={`fa fa-trash`} aria-hidden="true"></i>
           </button>
-          <input className="sounboard-controls-input"
+          <input className="soundboard-controls-input"
             onChange={this.handleMmChange}
             value={this.state.mm}
             />

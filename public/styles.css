@@ -135,79 +135,117 @@ a:hover {
 
 .soundboard-controls-button {
   cursor: pointer;
-  background-color: #777;
-  height: 32px;
-  width: 38px;
-  margin: 0 10px;
-  border-bottom: 2px solid #333;
-  border-right: 2px solid #333;
+  background: none;
   border-top: 2px solid #555;
-  border-left: 2px solid #555;
-  line-height: 26px;
+  border-bottom: 2px solid #555;
+  height: 40px;
+  width: 48px;
+  line-height: 36px;
   text-align: center;
-  transition: background .8s, border .8s;
+  color: #bbb;
+  font-size: 14px;
+  text-rendering: optimizeSpeed;
+  transition: background .8s;
 }
 
 .soundboard-controls-button:hover {
-  background-color: #999;
-  border-bottom: 2px solid #555;
-  border-right: 2px solid #555;
-  border-top: 2px solid #777;
-  border-left: 2px solid #777;
+  background-color: #555;
   transition: none;
   -webkit-transition: none;
 }
 
 .soundboard-controls-button:active {
-  background-color: #aaa;
-  border-bottom: 2px solid #777;
-  border-right: 2px solid #777;
+  background-color: #777;
+  padding-top: 1px;
+  padding-left: 1px;
+}
+
+.soundboard-controls-input {
+  outline: none;
+  font-family: 'VT323', monospace;
+  background: none;
+  border: 0;
   border-top: 2px solid #555;
-  border-left: 2px solid #555;
-  padding-top: 2px;
-  padding-left: 2px;
-  transition: border 0s;
-}
-
-.soundboard-controls-tempo-container {
-  margin-left: 18px;
-  opacity: .8;
+  border-bottom: 2px solid #555;
+  height: 40px;
+  width: 48px;
+  line-height: 36px;
+  font-size: 20px;
   color: #ccc;
-  transition: opacity .8s;
-  -webkit-transition: opacity .8s;
+  text-align: center;
+  transition: background .8s;
+  -webkit-transition: background .8s;
 }
 
-.soundboard-controls-tempo-container:hover {
-  margin-left: 18px;
-  opacity: 1;
+.soundboard-controls-input:hover {
+  background-color: #555;
+  color: #ddd;
   transition: none;
   -webkit-transition: none;
 }
 
+.soundboard-controls-input:focus {
+  background-color: #555;
+  color: #ddd;
+}
+
+.soundboard-controls-tempo-container {
+  height: 40px;
+  background: none;
+  border-top: 2px solid #555;
+  border-bottom: 2px solid #555;
+  color: #ccc;
+  transition: background .8s;
+  -webkit-transition: background .8s;
+}
+
+.soundboard-controls-tempo-container:hover {
+  position: relative;
+  transition: none;
+  -webkit-transition: none;
+  background-color: #444;
+}
+
 .soundboard-controls-tempo-title {
   text-align: center;
-  margin-bottom: 4px;
   font-size: 16px;
 }
 
 .soundboard-controls-tempo-slider {
+  position: relative;
+  bottom: -2px;
+  margin: 0;
   cursor: pointer;
-  width: 250px;
+  width: 200px;
   height: 18px;
   background: #454545;
   outline: none;
   transform: scaleX(-1);
   -webkit-appearance: none;
   appearance: none;
+  transition: background .8s;
+  -webkit-transition: background .8s;
+}
+
+.soundboard-controls-tempo-container:hover .soundboard-controls-tempo-slider {
+  background-color: #656565;
+  transition: none;
+  -webkit-transition: none;
 }
 
 .soundboard-controls-tempo-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
+  cursor: pointer;
+  background: #bbb;
   width: 18px;
   height: 18px;
-  background: #bbb;
-  cursor: pointer;
+  transition: background .8s;
+  -webkit-transition: background .8s;
+}
+
+.soundboard-controls-tempo-container:hover .soundboard-controls-tempo-slider::-webkit-slider-thumb {
+  background: #ccc;
 }
 
 .soundboard-controls-tempo-slider::-moz-range-thumb {
@@ -215,6 +253,10 @@ a:hover {
   height: 18px;
   background: #bbb;
   cursor: pointer;
+}
+
+.soundboard-controls-tempo-container:hover .soundboard-controls-tempo-slider::-moz-range-thumb {
+  background: #ccc;
 }
 
 /************* INSTRUMENTS **************/
