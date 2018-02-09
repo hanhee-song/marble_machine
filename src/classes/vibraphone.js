@@ -7,6 +7,7 @@ class Vibraphone extends Instrument {
     this.setup();
     // this.initializeMarble();
     this._preloadAudio();
+    this.name = "Vibraphone";
   }
   
   setup() {

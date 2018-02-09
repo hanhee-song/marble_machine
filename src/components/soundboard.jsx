@@ -146,10 +146,9 @@ class Soundboard extends React.Component {
     // I want to pass on tempo, mm, and each instrument's json
     const instruments = {};
     this.state.instruments.forEach(inst => {
-      // Set ourselves up for some sweet high-level programming
-      // never mind, I was going to do some fancy shmancy name eval
-      // but realized I don't want to instantiate new instances
-      const name = inst.constructor.name;
+      // Don't use inst.constructor.name
+      // React will rename the classes to "t"
+      const name = inst.getName();
       instruments[name] = inst.exportJSON();
     });
     
@@ -174,8 +173,8 @@ class Soundboard extends React.Component {
   //
   //   this.state.instruments.forEach(inst => {
   //     inst.setMm(data.mm);
-  //     if (data.instruments[inst.constructor.name]) {
-  //       inst.importJSON(data.instruments[inst.constructor.name]);
+  //     if (data.instruments[inst.getName()]) {
+  //       inst.importJSON(data.instruments[inst.getName()]);
   //     }
   //   });
   // }
@@ -188,8 +187,8 @@ class Soundboard extends React.Component {
     
     this.state.instruments.forEach(inst => {
       inst.setMm(data.mm);
-      if (data.instruments[inst.constructor.name]) {
-        inst.importJSON(data.instruments[inst.constructor.name]);
+      if (data.instruments[inst.getName()]) {
+        inst.importJSON(data.instruments[inst.getName()]);
       }
     });
   }

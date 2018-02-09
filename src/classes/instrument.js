@@ -179,12 +179,19 @@ class Instrument {
   }
   
   importJSON(json) {
+    if (!json) {
+      console.log("Invalid Input");
+    }
     if (typeof json === "string") {
       this.beatsArray = JSON.parse(json);
     } else {
       this.beatsArray = json;
     }
     this.updateComponents();
+  }
+  
+  getName() {
+    return this.name;
   }
 }
 
