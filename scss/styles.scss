@@ -71,17 +71,6 @@ html {
   box-sizing: border-box;
 }
 
-a {
-  color: #888;
-  text-decoration: none;
-  transition: color 1s;
-}
-
-a:hover {
-  color: #fff;
-  transition: none;
-}
-
 .title {
   margin: auto;
   margin-top: 50px;
@@ -109,15 +98,23 @@ a:hover {
     line-height: 20px;
     
     a {
+      color: #888;
+      text-decoration: none;
+      transition: color 1s;
       display: flex;
       
       .fa {
         text-align: center;
         min-width: 22px;
       }
-      
-      &:hover .fa {
-        font-size: 19px;
+
+      &:hover {
+        color: #fff;
+        transition: none;
+        
+        .fa {
+          font-size: 19px;
+        }
       }
     }
   }
@@ -229,7 +226,6 @@ a:hover {
       background-color: #656565;
       transition: none;
       -webkit-transition: none;
-      
     }
     
     .tempo-slider::-webkit-slider-thumb {
@@ -260,9 +256,6 @@ a:hover {
   }
 }
 
-
-
-
 /************* INSTRUMENTS **************/
 
 .soundboard-instruments {
@@ -275,9 +268,7 @@ a:hover {
     height: 20px;
     padding-left: 1%;
     
-    &:nth-of-type(2n + 1) {
-      background-color: #191919;
-    }
+    &:nth-of-type(2n + 1) { background-color: #191919; }
   }
   
   .note-title {
@@ -331,9 +322,7 @@ a:hover {
       width: 22px;
     }
     
-    &:last-of-type {
-      border-right: 2px solid #aaa;
-    }
+    &:last-of-type { border-right: 2px solid #aaa; }
     
     &.active {
       background-color: #888;

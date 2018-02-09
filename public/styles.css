@@ -64,15 +64,6 @@ html {
 * {
   box-sizing: border-box; }
 
-a {
-  color: #888;
-  text-decoration: none;
-  transition: color 1s; }
-
-a:hover {
-  color: #fff;
-  transition: none; }
-
 .title {
   margin: auto;
   margin-top: 50px;
@@ -97,12 +88,18 @@ a:hover {
     font-size: 18px;
     line-height: 20px; }
     .footer .about-me a {
+      color: #888;
+      text-decoration: none;
+      transition: color 1s;
       display: flex; }
       .footer .about-me a .fa {
         text-align: center;
         min-width: 22px; }
-      .footer .about-me a:hover .fa {
-        font-size: 19px; }
+      .footer .about-me a:hover {
+        color: #fff;
+        transition: none; }
+        .footer .about-me a:hover .fa {
+          font-size: 19px; }
 
 /************ SOUNDBOARD ***************/
 .soundboard {
