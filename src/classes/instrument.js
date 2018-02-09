@@ -125,7 +125,7 @@ class Instrument {
   }
   
   historyPop() {
-    if (this.history.length > 1) {
+    if (this.history.length >= 1) {
       const state = this.history.pop().state;
       this.beatsArray = state;
       this.updateComponents();

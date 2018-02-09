@@ -116,10 +116,10 @@ class Soundboard extends React.Component {
     // about 10 miliseconds
     let instrumentsToReverse = [];
     
-    // Get the most recent timestamp, put those instruments in the arr
+    // Get the most recent timestamp
     const keys = Object.keys(instrumentUndos).map(time => Number(time));
     const max = Math.max.apply(null, keys);
-    instrumentsToReverse = instrumentsToReverse.concat(instrumentUndos[max]);
+    // instrumentsToReverse = instrumentsToReverse.concat(instrumentUndos[max]);
     
     // Iterate over all keys, put anything within 10 miliseconds in the arr
     keys.forEach(timestamp => {
@@ -128,6 +128,8 @@ class Soundboard extends React.Component {
         instrumentsToReverse = instrumentsToReverse.concat(instruments);
       }
     });
+    
+    instrumentsToReverse = [...new Set(instrumentsToReverse)];
     
     if (instrumentsToReverse.length > 0) {
       instrumentsToReverse.forEach(instrument => {
