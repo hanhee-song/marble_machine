@@ -83,18 +83,44 @@ class Soundboard extends React.Component {
   }
   
   handleUndo(e) {
+    // Hash of { timestamps: [inst, inst] }
     const instrumentUndos = {};
+    
+    // I use an array because a simultaneous change (namely, hitting
+    // that undo button) may result in the same timestamp for multiple instruments
     this.state.instruments.forEach((instrument) => {
       const mostRecent = instrument.getMostRecentHistory();
       if (mostRecent) {
-        instrumentUndos[mostRecent] = instrument;
+        if (instrumentUndos[mostRecent]) {
+          instrumentUndos[mostRecent].push(instrument);
+        } else {
+          instrumentUndos[mostRecent] = [instrument];
+        }
       }
     });
+    
+    // We're going to put in here the most recent timestamp's instruments
+    // plus we'll check the other timestamps to see if they're within
+    // about 10 miliseconds
+    let instrumentsToReverse = [];
+    
+    // Get the most recent timestamp, put those instruments in the arr
     const keys = Object.keys(instrumentUndos).map(time => Number(time));
     const max = Math.max.apply(null, keys);
-    const mostRecentInstrument = instrumentUndos[max];
-    if (mostRecentInstrument) {
-      mostRecentInstrument.historyPop();
+    instrumentsToReverse = instrumentsToReverse.concat(instrumentUndos[max]);
+    
+    // Iterate over all keys, put anything within 10 miliseconds in the arr
+    keys.forEach(timestamp => {
+      if (max - timestamp < 10) {
+        let instruments = instrumentUndos[timestamp];
+        instrumentsToReverse = instrumentsToReverse.concat(instruments);
+      }
+    });
+    
+    if (instrumentsToReverse.length > 0) {
+      instrumentsToReverse.forEach(instrument => {
+        instrument.historyPop();
+      });
     }
   }
   
