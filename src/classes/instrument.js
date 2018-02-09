@@ -65,7 +65,9 @@ class Instrument {
   // PLAY, ADD, REMOVE, CLEAR ================================
   
   playNote(note) {
-    this.sounds[note].pause();
+    if (!this.sounds[note].paused) {
+      this.sounds[note].pause();
+    }
     this.sounds[note].currentTime = 0;
     this.sounds[note].play();
   }
@@ -73,8 +75,10 @@ class Instrument {
   playAtBeat(n) {
     if (n === undefined) return;
     this.beatsArray[n].forEach((note) => {
-      if (!this.isMuted(note)) {
-        this.sounds[note].pause();
+        if (!this.isMuted(note)) {
+        if (!this.sounds[note].paused) {
+          this.sounds[note].pause();
+        }
         this.sounds[note].currentTime = 0;
         this.sounds[note].play();
       }

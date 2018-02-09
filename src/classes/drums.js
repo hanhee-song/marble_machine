@@ -6,7 +6,7 @@ class Drums extends Instrument {
     // this.notes;
     this.setup();
     // this.initializeMarble();
-    this._preloadAudio();
+    // this._preloadAudio();
     this.name = "Drums";
   }
   
