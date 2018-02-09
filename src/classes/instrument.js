@@ -52,6 +52,16 @@ class Instrument {
     this.updateComponentCallbacks[note] = callback;
   }
   
+  updateComponents(note) {
+    if (note) {
+      this.updateComponentCallbacks[note]();
+    } else {
+      Object.values(this.updateComponentCallbacks).forEach(callback => {
+        callback();
+      });
+    }
+  }
+  
   // PLAY, ADD, REMOVE, CLEAR ================================
   
   playNote(note) {
@@ -118,9 +128,7 @@ class Instrument {
     if (this.history.length > 1) {
       const state = this.history.pop().state;
       this.beatsArray = state;
-      Object.values(this.updateComponentCallbacks).forEach(callback => {
-        callback();
-      });
+      this.updateComponents();
     }
   }
   
@@ -171,7 +179,12 @@ class Instrument {
   }
   
   importJSON(json) {
-    this.beats = JSON.parse(json);
+    if (typeof json === "string") {
+      this.beatsArray = JSON.parse(json);
+    } else {
+      this.beatsArray = json;
+    }
+    this.updateComponents();
   }
 }
 

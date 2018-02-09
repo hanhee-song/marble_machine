@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Soundboard from './components/soundboard';
+import { Route } from 'react-router-dom';
 
 class App extends Component {
   render() {
@@ -7,7 +8,7 @@ class App extends Component {
       <div className="App">
         <div className="title">Marble Machine</div>
         
-        <Soundboard />
+        <Route component={Soundboard} />
           
         <div className="footer">
           Hanhee Song

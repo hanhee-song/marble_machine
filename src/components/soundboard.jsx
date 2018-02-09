@@ -2,7 +2,7 @@ import React from 'react';
 import Drums from '../classes/drums';
 import Vibraphone from '../classes/vibraphone';
 import InstrumentBoard from './instrument_board';
-
+import { compress, decompress, encodeBase64, decodeBase64 } from 'lzutf8';
 class Soundboard extends React.Component {
   constructor(props) {
     super(props);
@@ -25,9 +25,20 @@ class Soundboard extends React.Component {
     this.handleMmChange = this.handleMmChange.bind(this);
     this.handleUndo = this.handleUndo.bind(this);
     this.handleExport = this.handleExport.bind(this);
-    this.handleImport = this.handleImport.bind(this);
+    // this.handleImport = this.handleImport.bind(this);
+    this.importData = this.importData.bind(this);
   }
-    
+  
+  componentDidMount() {
+    let compressedString = this.props.location.pathname.slice(1) || "eyJ0ZW1wbyI6MjA0LCJtbSI6NjQsImluc3RydW1lbnRzIjp7IlZpYnJhcGhvbmUiOiJbW10sxANcIjJlXCIsXCIyYlwixRAzxgnZH2HICWfQEtpKzy7EJdAsZM52ZNhL1h/7AJXPKzJmc/sAltBY7wCWxDzUJ+8Antgnxk5cIjNjzjnbM+YAx/8ArcdEZcosMshixxXMa8kJySTpAJj7AKHJG/gAksYJxG9dIiwiRHJ1bXPlAmhcImtpY2vHIGhhdMcKc25hcusAscYkLMoi3yXVJddryxXHLNBD1Tffff8Aotsl/ACa1kb/AKLffdMl2Gf9AIbfNfgA3NtN+QEZxxks0Ef1Aez3Adr/ATVdIn19";
+    try {
+      this.importData(JSON.parse(decompress(decodeBase64(compressedString))));
+    }
+    catch(err) {
+      this.props.history.push("/");
+    }
+  }
+  
   handleResume() {
     const timeoutCallback = () => {
       const nextBeat = this.state.currentBeat + 1 >= this.state.mm
@@ -142,14 +153,29 @@ class Soundboard extends React.Component {
       mm: this.state.mm,
       instruments: instruments,
     });
-    console.log(data);
+    const compressedString = encodeBase64(compress(data));
+    this.props.history.push("/" + compressedString);
   }
   
-  handleImport(e) {
-    e.preventDefault();
-    this.handleStop(); // reset currentBeat and timeout
-    
-    const data = JSON.parse(e.target.value);
+  // handleImport(e) {
+  //   e.preventDefault();
+  //   this.handleStop(); // reset currentBeat and timeout
+  //
+  //   const data = JSON.parse(e.target.value);
+  //   this.setState({
+  //     tempo: data.tempo,
+  //     mm: data.mm,
+  //   });
+  //
+  //   this.state.instruments.forEach(inst => {
+  //     inst.setMm(data.mm);
+  //     if (data.instruments[inst.constructor.name]) {
+  //       inst.importJSON(data.instruments[inst.constructor.name]);
+  //     }
+  //   });
+  // }
+  
+  importData(data) {
     this.setState({
       tempo: data.tempo,
       mm: data.mm,

@@ -5,7 +5,7 @@ class Drums extends Instrument {
     super(props);
     // this.notes;
     this.setup();
-    this.initializeMarble();
+    // this.initializeMarble();
     this._preloadAudio();
   }
   
