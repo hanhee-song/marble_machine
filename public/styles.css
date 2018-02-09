@@ -207,7 +207,7 @@ html {
   height: 20px;
   padding-left: 1%; }
   .soundboard-instruments .line:nth-of-type(2n + 1) {
-    background-color: #191919; }
+    background-color: #222; }
 
 .soundboard-instruments .note-title {
   width: 40px;
@@ -216,8 +216,8 @@ html {
 .soundboard-instruments .note-mute {
   cursor: pointer;
   background-color: #454545;
-  border-bottom: 1px solid #222;
-  border-right: 1px solid #222;
+  border-bottom: 1px solid #333;
+  border-right: 1px solid #333;
   color: #fff;
   height: 17px;
   width: 19px;
@@ -229,8 +229,8 @@ html {
   -webkit-transition: background-color .2s, color .2s, border .2s; }
   .soundboard-instruments .note-mute:hover {
     background-color: #656565;
-    border-bottom: 1px solid #333;
-    border-right: 1px solid #333; }
+    border-bottom: 1px solid #3a3a3a;
+    border-right: 1px solid #3a3a3a; }
   .soundboard-instruments .note-mute.muted {
     background-color: #333;
     color: #bbb; }
@@ -242,9 +242,12 @@ html {
   height: 100%;
   transition: none;
   width: 20px; }
-  .soundboard-instruments .square.start-measure {
+  .soundboard-instruments .square:nth-of-type(8n + 3) {
     border-left: 2px solid #aaa;
     width: 22px; }
+  .soundboard-instruments .square:nth-of-type(8n + 7) {
+    border-left: 1px solid #454545;
+    width: 21px; }
   .soundboard-instruments .square:last-of-type {
     border-right: 2px solid #aaa; }
   .soundboard-instruments .square.active {
