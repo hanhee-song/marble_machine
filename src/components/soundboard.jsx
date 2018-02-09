@@ -24,6 +24,8 @@ class Soundboard extends React.Component {
     this.handleResetAll = this.handleResetAll.bind(this);
     this.handleMmChange = this.handleMmChange.bind(this);
     this.handleUndo = this.handleUndo.bind(this);
+    this.handleExport = this.handleExport.bind(this);
+    this.handleImport = this.handleImport.bind(this);
   }
     
   handleResume() {
@@ -124,6 +126,43 @@ class Soundboard extends React.Component {
     }
   }
   
+  handleExport(e) {
+    // I want to pass on tempo, mm, and each instrument's json
+    const instruments = {};
+    this.state.instruments.forEach(inst => {
+      // Set ourselves up for some sweet high-level programming
+      // never mind, I was going to do some fancy shmancy name eval
+      // but realized I don't want to instantiate new instances
+      const name = inst.constructor.name;
+      instruments[name] = inst.exportJSON();
+    });
+    
+    const data = JSON.stringify({
+      tempo: this.state.tempo,
+      mm: this.state.mm,
+      instruments: instruments,
+    });
+    console.log(data);
+  }
+  
+  handleImport(e) {
+    e.preventDefault();
+    this.handleStop(); // reset currentBeat and timeout
+    
+    const data = JSON.parse(e.target.value);
+    this.setState({
+      tempo: data.tempo,
+      mm: data.mm,
+    });
+    
+    this.state.instruments.forEach(inst => {
+      inst.setMm(data.mm);
+      if (data.instruments[inst.constructor.name]) {
+        inst.importJSON(data.instruments[inst.constructor.name]);
+      }
+    });
+  }
+  
   render () {
     const startButton = this.state.timeout ? "pause" : "play";
     const tempo = Math.round(30000 / (this.state.tempo + 12));
@@ -153,7 +192,12 @@ class Soundboard extends React.Component {
               value={this.state.tempo}
               onChange={this.handleTempoChange}/>
           </div>
+          <button className="control square button" onClick={this.handleExport}>
+            <i className={`fa fa-upload`} aria-hidden="true"></i>
+          </button>
         </div>
+        
+        
         <div className="soundboard-instruments">
           <InstrumentBoard
             currentBeat={this.state.currentBeat}

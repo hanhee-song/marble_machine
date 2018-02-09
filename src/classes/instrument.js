@@ -12,6 +12,7 @@ class Instrument {
     this.sounds = {};
     this.history = [];
     this.updateComponentCallbacks = {};
+    // this.name;
   }
   
   _preloadAudio() {
@@ -161,6 +162,16 @@ class Instrument {
         this.beatsArray.push([]);
       }
     }
+  }
+  
+  // EXPORT ==================================================
+  
+  exportJSON() {
+    return JSON.stringify(this.beatsArray.slice(0, this.mm));
+  }
+  
+  importJSON(json) {
+    this.beats = JSON.parse(json);
   }
 }
 
