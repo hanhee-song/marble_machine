@@ -93,9 +93,8 @@ class Line extends React.Component {
     return this.state.line.map((bool, i) => {
       const active = bool ? "active" : "";
       const current = this.props.currentBeat === i && active ? "current" : "";
-      const measureStart = i % 8 === 0 ? "start-measure" : "";
       return (
-        <div className={`square wide ${active} ${current} ${measureStart}`}
+        <div className={`square wide ${active} ${current}`}
           onClick={this.handleClick(i)}
           key={i}>
         </div>

@@ -268,7 +268,7 @@ html {
     height: 20px;
     padding-left: 1%;
     
-    &:nth-of-type(2n + 1) { background-color: #191919; }
+    &:nth-of-type(2n + 1) { background-color: #222; }
   }
   
   .note-title {
@@ -279,8 +279,8 @@ html {
   .note-mute {
     cursor: pointer;
     background-color: #454545;
-    border-bottom: 1px solid #222;
-    border-right: 1px solid #222;
+    border-bottom: 1px solid #333;
+    border-right: 1px solid #333;
     color: #fff;
     height: 17px;
     width: 19px;
@@ -293,8 +293,8 @@ html {
     
     &:hover {
       background-color: #656565;
-      border-bottom: 1px solid #333;
-      border-right: 1px solid #333;
+      border-bottom: 1px solid #3a3a3a;
+      border-right: 1px solid #3a3a3a;
     }
     
     &.muted {
@@ -317,9 +317,14 @@ html {
     transition: none;
     width: 20px;
     
-    &.start-measure {
+    &:nth-of-type(8n + 3) {
       border-left: 2px solid #aaa;
       width: 22px;
+    }
+    
+    &:nth-of-type(8n + 7) {
+      border-left: 1px solid #454545;
+      width: 21px;
     }
     
     &:last-of-type { border-right: 2px solid #aaa; }
