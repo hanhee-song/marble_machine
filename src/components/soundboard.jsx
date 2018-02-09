@@ -30,7 +30,8 @@ class Soundboard extends React.Component {
   }
   
   componentDidMount() {
-    let compressedString = this.props.location.pathname.slice(1) || "eyJ0ZW1wbyI6MjA0LCJtbSI6NjQsImluc3RydW1lbnRzIjp7IlZpYnJhcGhvbmUiOiJbW10sxANcIjJlXCIsXCIyYlwixRAzxgnZH2HICWfQEtpKzy7EJdAsZM52ZNhL1h/7AJXPKzJmc/sAltBY7wCWxDzUJ+8Antgnxk5cIjNjzjnbM+YAx/8ArcdEZcosMshixxXMa8kJySTpAJj7AKHJG/gAksYJxG9dIiwiRHJ1bXPlAmhcImtpY2vHIGhhdMcKc25hcusAscYkLMoi3yXVJddryxXHLNBD1Tffff8Aotsl/ACa1kb/AKLffdMl2Gf9AIbfNfgA3NtN+QEZxxks0Ef1Aez3Adr/ATVdIn19";
+    const defaultString = "eyJ0ZW1wbyI6MjA0LCJtbSI6NjQsImluc3RydW1lbnRzIjp7IlZpYnJhcGhvbmUiOiJbW1wiMGVcIl0sW10sW1wiMmVcIixcIjJixQfHGlwiM2LHCTHIEskbyzLGK2HFEMkpM2fOGdo5z3TKfWfGUs9Jy0DEHmHIHmTGEGTqANXJOjLGHMgzyVHpAN7IEtQyzHzHXvIA3tk5MmZzziEwxBH9AODKQvoA4FwiMcZizWXPO+wBYsYoyAnJG9M6zW7JEGPPIM9j2UjnAR/xAILoAP3PKctA7ADt5wH06QJdMWPIGckJ8QKzyETSK8hW5ADl7ADeyW/KRMkS6AGH9gICxgnkAINdIiwiRHJ1bXPnA2VraWNrxyBoYXTHCnNuYXLrA33GJCzKIt8l1SXXa8sVxyzQQ9U3333/AKLbJfwAmtZG/wCi333TJdhn/QCG3zX4ANzbTfkBGccZLNBH9QHs9wHa/wE1XSJ9fQ==";
+    let compressedString = this.props.location.pathname.slice(1) || defaultString;
     try {
       this.importData(JSON.parse(decompress(decodeBase64(compressedString))));
     }
