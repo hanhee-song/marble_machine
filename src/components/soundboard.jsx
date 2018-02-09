@@ -78,12 +78,7 @@ class Soundboard extends React.Component {
   }
   
   handleResetAll(e) {
-    this.handlePause();
-    this.setState({
-      currentBeat: -1,
-      timeout: null,
-      tempo: 204,
-    });
+    this.handleStop();
     this.state.instruments.forEach((instrument) => {
       instrument.clearAllNotes();
     });
