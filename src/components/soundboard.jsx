@@ -31,8 +31,12 @@ class Soundboard extends React.Component {
   
   componentDidMount() {
     const defaultString = "eyJ0ZW1wbyI6MjA0LCJtbSI6NjQsImluc3RydW1lbnRzIjp7IlZpYnJhcGhvbmUiOiJbW1wiMGVcIl0sW10sW1wiMmVcIixcIjJixQfHGlwiM2LHCTHIEskbyzLGK2HFEMkpM2fOGdo5z3TKfWfGUs9Jy0DEHmHIHmTGEGTqANXJOjLGHMgzyVHpAN7IEtQyzHzHXvIA3tk5MmZzziEwxBH9AODKQvoA4FwiMcZizWXPO+wBYsYoyAnJG9M6zW7JEGPPIM9j2UjnAR/xAILoAP3PKctA7ADt5wH06QJdMWPIGckJ8QKzyETSK8hW5ADl7ADeyW/KRMkS6AGH9gICxgnkAINdIiwiRHJ1bXPnA2VraWNrxyBoYXTHCnNuYXLrA33GJCzKIt8l1SXXa8sVxyzQQ9U3333/AKLbJfwAmtZG/wCi333TJdhn/QCG3zX4ANzbTfkBGccZLNBH9QHs9wHa/wE1XSJ9fQ==";
-    let compressedString = this.props.location.pathname.slice(1) || defaultString;
+    let compressedString = this.props.location.pathname.slice(1);
     try {
+      if (!compressedString) {
+        compressedString = defaultString;
+        this.props.history.push("/" + defaultString);
+      }
       this.importData(JSON.parse(decompress(decodeBase64(compressedString))));
     }
     catch(err) {
