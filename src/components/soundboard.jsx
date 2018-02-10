@@ -237,10 +237,12 @@ class Soundboard extends React.Component {
             currentBeat={this.state.currentBeat}
             mm={this.state.mm} />
           <InstrumentBoard
+            playing={Boolean(this.props.timeout)}
             currentBeat={this.state.currentBeat}
             mm={this.state.mm}
             instrument={this.state.instruments[0]} />
           <InstrumentBoard
+            playing={Boolean(this.props.timeout)}
             currentBeat={this.state.currentBeat}
             mm={this.state.mm}
             instrument={this.state.instruments[1]} />
