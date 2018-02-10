@@ -48,13 +48,14 @@ class Soundboard extends React.Component {
   }
   
   componentWillReceiveProps(nextProps) {
-    if (this.props.location.pathname !== nextProps.location.pathname) {
-      let compressedString = this.props.location.pathname.slice(1);
+    if (this.props.location.pathname !== "/" && this.props.location.pathname !== nextProps.location.pathname) {
+      let compressedString = nextProps.location.pathname.slice(1);
       try {
         this.importData(JSON.parse(decompress(decodeBase64(compressedString))));
       }
       catch(err) {
-        this.props.history.push("/");
+        this.props.history.goBack();
+        console.log("Invalid URL");
       }
     }
   }
