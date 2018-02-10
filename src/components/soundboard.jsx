@@ -2,7 +2,9 @@ import React from 'react';
 import Drums from '../classes/drums';
 import Vibraphone from '../classes/vibraphone';
 import InstrumentBoard from './instrument_board';
+import Slider from './slider';
 import { compress, decompress, encodeBase64, decodeBase64 } from 'lzutf8';
+
 class Soundboard extends React.Component {
   constructor(props) {
     super(props);
@@ -225,6 +227,9 @@ class Soundboard extends React.Component {
         
         
         <div className="soundboard-instruments">
+          <Slider
+            currentBeat={this.state.currentBeat}
+            mm={this.state.mm} />
           <InstrumentBoard
             currentBeat={this.state.currentBeat}
             mm={this.state.mm}

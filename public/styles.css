@@ -198,8 +198,16 @@ html {
     .soundboard-controls .tempo-container:hover .tempo-slider::-moz-range-thumb {
       background: #ccc; }
 
+/************* BEAT SLIDER **************/
+.beat-slider {
+  height: 20px;
+  width: calc(99% - 40px - 24px);
+  margin-left: calc(1% + 40px + 24px);
+  border-left: 2px solid #aaa;
+  border-right: 2px solid #aaa; }
+
 /************* INSTRUMENTS **************/
-.soundboard-instruments > * {
+.soundboard-instruments .instrument {
   margin-bottom: 30px; }
 
 .soundboard-instruments .line {
@@ -221,6 +229,7 @@ html {
   color: #fff;
   height: 17px;
   width: 19px;
+  min-width: 19px;
   margin-right: 5px;
   line-height: 19px;
   font-size: 12px;
