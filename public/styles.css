@@ -200,11 +200,18 @@ html {
 
 /************* BEAT SLIDER **************/
 .beat-slider {
+  display: flex;
   height: 20px;
   width: calc(99% - 40px - 24px);
-  margin-left: calc(1% + 40px + 24px);
-  border-left: 2px solid #aaa;
-  border-right: 2px solid #aaa; }
+  margin-left: calc(1% + 40px + 24px); }
+  .beat-slider .square {
+    background: #000;
+    transition: background 1.2s !important;
+    -webkit-transition: background 1.2s !important; }
+  .beat-slider .square.current {
+    background: #555;
+    transition: background .1s !important;
+    -webkit-transition: background .1s !important; }
 
 /************* INSTRUMENTS **************/
 .soundboard-instruments .instrument {

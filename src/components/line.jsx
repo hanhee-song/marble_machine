@@ -94,7 +94,7 @@ class Line extends React.Component {
       const active = bool ? "active" : "";
       const current = this.props.currentBeat === i && active ? "current" : "";
       return (
-        <div className={`square wide ${active} ${current}`}
+        <div className={`square ${active} ${current}`}
           onClick={this.handleClick(i)}
           key={i}>
         </div>
