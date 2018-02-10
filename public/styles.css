@@ -205,13 +205,13 @@ html {
   width: calc(99% - 40px - 24px);
   margin-left: calc(1% + 40px + 24px); }
   .beat-slider .square {
-    background: #000;
-    transition: background 1.2s !important;
-    -webkit-transition: background 1.2s !important; }
+    color: #000;
+    transition: color 1.2s !important;
+    -webkit-transition: color 1.2s !important; }
   .beat-slider .square.current {
-    background: #555;
-    transition: background .1s !important;
-    -webkit-transition: background .1s !important; }
+    color: #aaa;
+    transition: color .1s !important;
+    -webkit-transition: color .1s !important; }
 
 /************* INSTRUMENTS **************/
 .soundboard-instruments .instrument {

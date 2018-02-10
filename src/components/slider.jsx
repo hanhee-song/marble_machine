@@ -54,6 +54,7 @@ class Line extends React.Component {
           onMouseEnter={this.handleMouseEnter(i)}
           onClick={this.handleClick(i)}
           key={i}>
+          <i className={`fa fa-chevron-down`} aria-hidden="true"></i>
         </div>
       );
     });
