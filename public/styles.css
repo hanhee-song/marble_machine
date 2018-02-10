@@ -234,9 +234,15 @@ html {
   display: flex;
   height: 20px;
   width: calc(99% - 40px - 24px);
-  margin-left: calc(1% + 40px + 24px); }
+  margin-left: calc(1% + 40px + 24px);
+  line-height: 20px; }
+  .beat-slider .arrow-wrapper {
+    position: absolute;
+    overflow: hidden;
+    text-align: center; }
   .beat-slider .square {
-    color: #000;
+    position: relative;
+    color: transparent;
     transition: color 1.2s !important;
     -webkit-transition: color 1.2s !important; }
   .beat-slider .square.current {
