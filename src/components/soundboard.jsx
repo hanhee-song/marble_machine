@@ -47,6 +47,18 @@ class Soundboard extends React.Component {
     }
   }
   
+  componentWillReceiveProps(nextProps) {
+    if (this.props.location.pathname !== nextProps.location.pathname) {
+      let compressedString = this.props.location.pathname.slice(1);
+      try {
+        this.importData(JSON.parse(decompress(decodeBase64(compressedString))));
+      }
+      catch(err) {
+        this.props.history.push("/");
+      }
+    }
+  }
+  
   handleResume() {
     const timeoutCallback = () => {
       const nextBeat = this.state.currentBeat + 1 >= this.state.mm
