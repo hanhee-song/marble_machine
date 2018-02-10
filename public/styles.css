@@ -166,13 +166,13 @@ html {
       bottom: -2px;
       margin: 0;
       cursor: pointer;
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
       width: 200px;
       height: 18px;
       background: #454545;
-      outline: none;
       transform: scaleX(-1);
-      -webkit-appearance: none;
-      appearance: none;
       transition: background .8s;
       -webkit-transition: background .8s; }
     .soundboard-controls .tempo-container:hover .tempo-slider {
@@ -201,6 +201,28 @@ html {
 /************* INSTRUMENTS **************/
 .soundboard-instruments > * {
   margin-bottom: 30px; }
+
+.soundboard-instruments .beat-slider {
+  position: relative;
+  bottom: -2px;
+  margin: 0;
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  bottom: -3px;
+  background: #454545;
+  margin-left: calc(1% + 40px + 22px);
+  width: calc(99% - 40px - 22px);
+  height: 20px; }
+
+.soundboard-instruments .beat-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  background: #777;
+  height: 20px;
+  width: 20px; }
 
 .soundboard-instruments .line {
   display: flex;

@@ -55,6 +55,8 @@ table {
 
 /*****************************************************/
 
+// GENERAL ==========================
+
 button {
   border: none;
   outline: none;
@@ -70,6 +72,24 @@ html {
 * {
   box-sizing: border-box;
 }
+
+@mixin slider {
+  position: relative;
+  bottom: -2px;
+  margin: 0;
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+@mixin slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+// TITLE AND FOOTER =========================
 
 .title {
   margin: auto;
@@ -207,17 +227,11 @@ html {
     }
     
     .tempo-slider {
-      position: relative;
-      bottom: -2px;
-      margin: 0;
-      cursor: pointer;
+      @include slider;
       width: 200px;
       height: 18px;
       background: #454545;
-      outline: none;
       transform: scaleX(-1);
-      -webkit-appearance: none;
-      appearance: none;
       transition: background .8s;
       -webkit-transition: background .8s;
     }
@@ -229,9 +243,7 @@ html {
     }
     
     .tempo-slider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      cursor: pointer;
+      @include slider-thumb;
       background: #bbb;
       width: 18px;
       height: 18px;
@@ -262,6 +274,26 @@ html {
   & > * {
     margin-bottom: 30px;
   }
+  
+  // SLIDER =================================
+  
+  .beat-slider {
+    @include slider;
+    bottom: -3px;
+    background: #454545;
+    margin-left: calc(1% + 40px + 22px);
+    width: calc(99% - 40px - 22px);
+    height: 20px;
+  }
+  
+  .beat-slider::-webkit-slider-thumb {
+    @include slider-thumb;
+    background: #777;
+    height: 20px;
+    width: 20px;
+  }
+  
+  // LINE ===================================
   
   .line {
     display: flex;
