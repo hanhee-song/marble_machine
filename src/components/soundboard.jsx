@@ -84,9 +84,11 @@ class Soundboard extends React.Component {
     const timeoutCallback = () => {
       const nextBeat = this.state.currentBeat + 1 >= this.state.mm
       ? 0 : this.state.currentBeat + 1;
-      this.setState({ currentBeat: nextBeat });
       const timeout = setTimeout(timeoutCallback, this.state.tempo);
-      this.setState({ timeout });
+      this.setState({
+        currentBeat: nextBeat,
+        timeout
+      });
     };
     timeoutCallback();
   }
