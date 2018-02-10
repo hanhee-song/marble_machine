@@ -13,6 +13,7 @@ class Soundboard extends React.Component {
       timeout: null,
       tempo: 204,
       mm: 64,
+      popup: "",
       instruments: [
         new Vibraphone(64),
         new Drums(64)
@@ -30,6 +31,7 @@ class Soundboard extends React.Component {
     // this.handleImport = this.handleImport.bind(this);
     this.importData = this.importData.bind(this);
     this.changeCurrentBeat = this.changeCurrentBeat.bind(this);
+    this.setPopup = this.setPopup.bind(this);
   }
   
   componentDidMount() {
@@ -59,6 +61,8 @@ class Soundboard extends React.Component {
       }
     }
   }
+  
+  // CONTROLS =============================================
   
   handleResume() {
     const timeoutCallback = () => {
@@ -114,6 +118,8 @@ class Soundboard extends React.Component {
     this.setState({ currentBeat: num });
   }
   
+  // UNDO ====================================================
+  
   handleUndo(e) {
     // Hash of { timestamps: [inst, inst] }
     const instrumentUndos = {};
@@ -158,6 +164,8 @@ class Soundboard extends React.Component {
     }
   }
   
+  // IMPORT / EXPORT =======================================
+  
   handleExport(e) {
     // I want to pass on tempo, mm, and each instrument's json
     const instruments = {};
@@ -175,25 +183,8 @@ class Soundboard extends React.Component {
     });
     const compressedString = encodeBase64(compress(data));
     this.props.history.push("/" + compressedString);
+    this.setPopup("URL Updated!");
   }
-  
-  // handleImport(e) {
-  //   e.preventDefault();
-  //   this.handleStop(); // reset currentBeat and timeout
-  //
-  //   const data = JSON.parse(e.target.value);
-  //   this.setState({
-  //     tempo: data.tempo,
-  //     mm: data.mm,
-  //   });
-  //
-  //   this.state.instruments.forEach(inst => {
-  //     inst.setMm(data.mm);
-  //     if (data.instruments[inst.getName()]) {
-  //       inst.importJSON(data.instruments[inst.getName()]);
-  //     }
-  //   });
-  // }
   
   importData(data) {
     this.setState({
@@ -209,11 +200,29 @@ class Soundboard extends React.Component {
     });
   }
   
+  setPopup(text) {
+    if (this.state.popup) {
+      this.setState({ popup: "" });
+    }
+    setTimeout(() => {
+      this.setState({ popup: text });
+      setTimeout(() => {
+        this.setState({ popup: "" });
+      }, 2900);
+    }, 0);
+  }
+  
+  // ============================================================
+  
   render () {
     const startButton = this.state.timeout ? "pause" : "play";
     const tempo = Math.round(30000 / (this.state.tempo + 12));
     return (
       <div className="soundboard">
+        {
+          this.state.popup &&
+          <div className="popup">{this.state.popup}</div>
+        }
         <div className="soundboard-controls">
           <button className="control square button" onClick={this.toggleRunning}>
             <i className={`fa fa-${startButton}`} aria-hidden="true"></i>
