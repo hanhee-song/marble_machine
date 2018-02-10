@@ -51,8 +51,10 @@ class Soundboard extends React.Component {
   
   componentWillReceiveProps(nextProps) {
     // Check not only that the URL changed but also check if the URL
-    // changed but only by merit of data being exported
-    // by comparing the current state with the url
+      // changed but only by merit of data being exported
+      // by comparing the current state with the url
+    // Only necessary for manually pasting it in. Export will not trigger
+      // new props if the URL and the current state are in sync
     let compressedString = nextProps.location.pathname.slice(1);
     if (this.props.location.pathname !== "/" && nextProps.location.pathname !== "/"
     && this.props.location.pathname !== nextProps.location.pathname
@@ -181,9 +183,13 @@ class Soundboard extends React.Component {
   // IMPORT / EXPORT =======================================
   
   handleExport(e) {
-    const compressedString = this.compressState();
-    this.props.history.push("/" + compressedString);
-    this.setPopup("URL Updated!");
+    const url = "/" + this.compressState();
+    if (this.props.location.pathname !== url) {
+      this.props.history.push(url);
+      this.setPopup("URL Updated!");
+    } else {
+      this.setPopup("No changes have been made");
+    }
   }
   
   compressState() {
