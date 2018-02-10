@@ -29,6 +29,7 @@ class Soundboard extends React.Component {
     this.handleMmChange = this.handleMmChange.bind(this);
     this.handleUndo = this.handleUndo.bind(this);
     this.handleExport = this.handleExport.bind(this);
+    this.compressState = this.compressState.bind(this);
     // this.handleImport = this.handleImport.bind(this);
     this.importData = this.importData.bind(this);
     this.changeCurrentBeat = this.changeCurrentBeat.bind(this);
@@ -49,9 +50,13 @@ class Soundboard extends React.Component {
   }
   
   componentWillReceiveProps(nextProps) {
+    // Check not only that the URL changed but also check if the URL
+    // changed but only by merit of data being exported
+    // by comparing the current state with the url
+    let compressedString = nextProps.location.pathname.slice(1);
     if (this.props.location.pathname !== "/" && nextProps.location.pathname !== "/"
-    && this.props.location.pathname !== nextProps.location.pathname) {
-      let compressedString = nextProps.location.pathname.slice(1);
+    && this.props.location.pathname !== nextProps.location.pathname
+    && this.compressState() !== compressedString) {
       if (this.isValidEncodedJSON(compressedString)) {
         this.importData(JSON.parse(decompress(decodeBase64(compressedString))));
         this.setPopup("Loaded from URL");
@@ -176,6 +181,12 @@ class Soundboard extends React.Component {
   // IMPORT / EXPORT =======================================
   
   handleExport(e) {
+    const compressedString = this.compressState();
+    this.props.history.push("/" + compressedString);
+    this.setPopup("URL Updated!");
+  }
+  
+  compressState() {
     // I want to pass on tempo, mm, and each instrument's json
     const instruments = {};
     this.state.instruments.forEach(inst => {
@@ -190,9 +201,7 @@ class Soundboard extends React.Component {
       mm: this.state.mm,
       instruments: instruments,
     });
-    const compressedString = encodeBase64(compress(data));
-    this.props.history.push("/" + compressedString);
-    this.setPopup("URL Updated!");
+    return encodeBase64(compress(data));
   }
   
   importData(data) {
