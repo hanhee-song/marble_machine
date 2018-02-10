@@ -14,6 +14,7 @@ class Soundboard extends React.Component {
       tempo: 204,
       mm: 64,
       popup: "",
+      popupTimeout: null,
       instruments: [
         new Vibraphone(64),
         new Drums(64)
@@ -204,11 +205,22 @@ class Soundboard extends React.Component {
     if (this.state.popup) {
       this.setState({ popup: "" });
     }
+    // wrapped in timeout to ensure correct order of execution
     setTimeout(() => {
-      this.setState({ popup: text });
-      setTimeout(() => {
-        this.setState({ popup: "" });
+      if (this.state.popupTimeout) {
+        clearTimeout(this.state.popupTimeout);
+      }
+      const timeout = setTimeout(() => {
+        this.setState({
+          popup: "",
+          popupTimeout: null,
+        });
       }, 2900);
+      
+      this.setState({
+        popup: text,
+        popupTimeout: timeout,
+      });
     }, 0);
   }
   
