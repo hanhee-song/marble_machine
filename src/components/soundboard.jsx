@@ -27,6 +27,7 @@ class Soundboard extends React.Component {
     this.handleExport = this.handleExport.bind(this);
     // this.handleImport = this.handleImport.bind(this);
     this.importData = this.importData.bind(this);
+    this.handleCurrentBeatChange = this.handleCurrentBeatChange.bind(this);
   }
   
   componentDidMount() {
@@ -92,6 +93,11 @@ class Soundboard extends React.Component {
         instrument.setMm(parseInt(input));
       });
     }
+  }
+  
+  handleCurrentBeatChange(e) {
+    const input = Number(e.target.value);
+    this.setState({ currentBeat: input });
   }
   
   handleUndo(e) {
@@ -225,13 +231,19 @@ class Soundboard extends React.Component {
         
         
         <div className="soundboard-instruments">
+          <input className="beat-slider" type="range"
+            min="0" max={this.state.mm - 1} step="1"
+            value={this.state.currentBeat}
+            onChange={this.handleCurrentBeatChange}/>
           <InstrumentBoard
             currentBeat={this.state.currentBeat}
             mm={this.state.mm}
+            playing={Boolean(this.state.timeout)}
             instrument={this.state.instruments[0]} />
           <InstrumentBoard
             currentBeat={this.state.currentBeat}
             mm={this.state.mm}
+            playing={Boolean(this.state.timeout)}
             instrument={this.state.instruments[1]} />
         </div>
       </div>
