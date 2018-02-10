@@ -122,11 +122,24 @@ class Soundboard extends React.Component {
   
   handleMmChange(e) {
     const input = e.target.value;
-    if (input == parseInt(input)) {
-      this.setState({ mm: parseInt(input) });
+    const numInput = parseInt(input);
+    
+    if (input === "") {
+      this.setState({ mm: "" });
       this.state.instruments.forEach((instrument) => {
-        instrument.setMm(parseInt(input));
+        instrument.setMm(0);
       });
+    }
+    
+    if (input == numInput) {
+      if (numInput > 128 || numInput < 1) {
+        this.setPopup("Input must be between 1 and 128");
+      } else {
+        this.setState({ mm: numInput });
+        this.state.instruments.forEach((instrument) => {
+          instrument.setMm(numInput);
+        });
+      }
     }
   }
   
