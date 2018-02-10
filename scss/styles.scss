@@ -281,6 +281,8 @@ html {
     @include slider;
     bottom: -3px;
     background: #454545;
+    border-left: 2px solid #aaa;
+    border-right: 2px solid #aaa;
     margin-left: calc(1% + 40px + 22px);
     width: calc(99% - 40px - 22px);
     height: 20px;
