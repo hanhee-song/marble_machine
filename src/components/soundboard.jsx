@@ -29,6 +29,7 @@ class Soundboard extends React.Component {
     this.handleExport = this.handleExport.bind(this);
     // this.handleImport = this.handleImport.bind(this);
     this.importData = this.importData.bind(this);
+    this.changeCurrentBeat = this.changeCurrentBeat.bind(this);
   }
   
   componentDidMount() {
@@ -94,6 +95,10 @@ class Soundboard extends React.Component {
         instrument.setMm(parseInt(input));
       });
     }
+  }
+  
+  changeCurrentBeat(num) {
+    this.setState({ currentBeat: num });
   }
   
   handleUndo(e) {
@@ -228,6 +233,7 @@ class Soundboard extends React.Component {
         
         <div className="soundboard-instruments">
           <Slider
+            changeCurrentBeat={this.changeCurrentBeat}
             currentBeat={this.state.currentBeat}
             mm={this.state.mm} />
           <InstrumentBoard
