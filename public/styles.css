@@ -59,7 +59,8 @@ button {
 html {
   font-family: 'VT323', monospace;
   background-color: #050505;
-  color: #fff; }
+  color: #fff;
+  overflow-x: hidden; }
 
 * {
   box-sizing: border-box; }
