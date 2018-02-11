@@ -208,6 +208,7 @@ class Soundboard extends React.Component {
     if (instrumentsToReverse.length > 0) {
       instrumentsToReverse.forEach(instrument => {
         instrument.historyPop();
+        instrument.updateComponents();
       });
     }
   }
@@ -253,6 +254,7 @@ class Soundboard extends React.Component {
       if (data.instruments[inst.getName()]) {
         inst.importJSON(data.instruments[inst.getName()]);
       }
+      inst.updateComponents();
     });
   }
   

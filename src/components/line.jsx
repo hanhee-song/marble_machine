@@ -61,6 +61,8 @@ class Line extends React.Component {
   }
   
   updateNotes() {
+    // This is the callback that is stored in the instrument
+    // invoke it via instrument.updateComponents(this.props.note)
     this.setState({
       muted: this.props.instrument.isMuted(this.props.note),
       line: this.props.instrument.getLine(this.props.note),
@@ -74,7 +76,7 @@ class Line extends React.Component {
     } else {
       instrument.mute(this.props.note);
     }
-    this.setState({ muted: instrument.isMuted(this.props.note) });
+    instrument.updateComponents(this.props.note);
   }
   
   handleClick(i) {

@@ -59,7 +59,8 @@ button {
 html {
   font-family: 'VT323', monospace;
   background-color: #050505;
-  color: #fff; }
+  color: #fff;
+  overflow-x: hidden; }
 
 * {
   box-sizing: border-box; }
@@ -100,6 +101,37 @@ html {
         transition: none; }
         .footer .about-me a:hover .fa {
           font-size: 19px; }
+
+/************ POPUP ************/
+@keyframes popup {
+  0% {
+    transform: translate(-50%, 10px);
+    opacity: 0; }
+  30% {
+    transform: translate(-50%, 0);
+    opacity: 1; }
+  75% {
+    transform: translate(-50%, 0);
+    opacity: 1; }
+  100% {
+    transform: translate(-50%, -10px);
+    opacity: 0; } }
+
+.popup {
+  position: fixed;
+  z-index: 2;
+  opacity: 0;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%);
+  background: #000;
+  border-radius: 3px;
+  border: 2px solid #777;
+  padding: 15px 25px;
+  text-align: center;
+  font-size: 18px;
+  animation: popup 3s ease-out;
+  -webkit-animation: popup 3s ease-out; }
 
 /************ SOUNDBOARD ***************/
 .soundboard {
@@ -198,8 +230,29 @@ html {
     .soundboard-controls .tempo-container:hover .tempo-slider::-moz-range-thumb {
       background: #ccc; }
 
+/************* BEAT SLIDER **************/
+.beat-slider {
+  display: flex;
+  height: 20px;
+  width: calc(99% - 40px - 24px);
+  margin-left: calc(1% + 40px + 24px);
+  line-height: 20px; }
+  .beat-slider .arrow-wrapper {
+    position: absolute;
+    overflow: hidden;
+    text-align: center; }
+  .beat-slider .square {
+    position: relative;
+    color: transparent;
+    transition: color 1.2s !important;
+    -webkit-transition: color 1.2s !important; }
+  .beat-slider .square.current {
+    color: #aaa;
+    transition: color .1s !important;
+    -webkit-transition: color .1s !important; }
+
 /************* INSTRUMENTS **************/
-.soundboard-instruments > * {
+.soundboard-instruments .instrument {
   margin-bottom: 30px; }
 
 .soundboard-instruments .line {
@@ -221,6 +274,7 @@ html {
   color: #fff;
   height: 17px;
   width: 19px;
+  min-width: 19px;
   margin-right: 5px;
   line-height: 19px;
   font-size: 12px;

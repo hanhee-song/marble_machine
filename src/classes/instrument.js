@@ -13,6 +13,14 @@ class Instrument {
     this.history = [];
     this.updateComponentCallbacks = {};
     // this.name;
+    
+    // NB
+    // The React component should remember the instrument internals
+      // (via #getNotes and #isMuted) in its own state and pass a
+      // setState callback via #setUpdateComponentCallback(cbk)
+    // When invoking any function that modifies instrument state
+      // (e.g. #addNote, #importJSON), #updateComponents(note) should also
+      // be invoked to force the react component to render
   }
   
   _preloadAudio() {
@@ -132,7 +140,6 @@ class Instrument {
     if (this.history.length >= 1) {
       const state = this.history.pop().state;
       this.beatsArray = state;
-      this.updateComponents();
     }
   }
   
@@ -195,22 +202,9 @@ class Instrument {
       data = json;
     }
     this.beatsArray = data.beatsArray;
-  // convert muted back into a set
+    // convert muted back into a set
     this.muted = new Set(data.muted);
-    this.updateComponents();
   }
-  
-  // importJSON(json) {
-  //   if (!json) {
-  //     console.log("Invalid Input");
-  //   }
-  //   if (typeof json === "string") {
-  //     this.beatsArray = JSON.parse(json);
-  //   } else {
-  //     this.beatsArray = json;
-  //   }
-  //   this.updateComponents();
-  // }
   
   getName() {
     return this.name;
