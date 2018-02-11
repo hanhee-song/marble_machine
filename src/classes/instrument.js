@@ -15,20 +15,20 @@ class Instrument {
     // this.name;
   }
   
-  _preloadAudio() {
-    Object.keys(this.sounds).forEach((note) => {
-      setTimeout(() => {
-        this.sounds[note].preload = "auto";
-        const vol = this.sounds[note].volume;
-        this.sounds[note].volume = 0.00;
-        this.sounds[note].play();
-        setTimeout(() => {
-          this.sounds[note].pause();
-          this.sounds[note].volume = vol;
-        }, 1000);
-      }, Math.random() * 2000);
-    });
-  }
+  // _preloadAudio() {
+  //   Object.keys(this.sounds).forEach((note) => {
+  //     setTimeout(() => {
+  //       this.sounds[note].preload = "auto";
+  //       const vol = this.sounds[note].volume;
+  //       this.sounds[note].volume = 0.00;
+  //       this.sounds[note].play();
+  //       setTimeout(() => {
+  //         this.sounds[note].pause();
+  //         this.sounds[note].volume = vol;
+  //       }, 1000);
+  //     }, Math.random() * 2000);
+  //   });
+  // }
   
   // DISPLAY FOR REACT COMPONENT =============================
   
@@ -179,20 +179,38 @@ class Instrument {
   // EXPORT ==================================================
   
   exportJSON() {
-    return JSON.stringify(this.beatsArray.slice(0, this.mm));
+    // Save muted as an array
+    const data = {
+      muted: Array.from(this.muted),
+      beatsArray: this.beatsArray.slice(0, this.mm),
+    };
+    return JSON.stringify(data);
   }
   
   importJSON(json) {
-    if (!json) {
-      console.log("Invalid Input");
-    }
+    let data;
     if (typeof json === "string") {
-      this.beatsArray = JSON.parse(json);
+      data = JSON.parse(json);
     } else {
-      this.beatsArray = json;
+      data = json;
     }
+    this.beatsArray = data.beatsArray;
+  // convert muted back into a set
+    this.muted = new Set(data.muted);
     this.updateComponents();
   }
+  
+  // importJSON(json) {
+  //   if (!json) {
+  //     console.log("Invalid Input");
+  //   }
+  //   if (typeof json === "string") {
+  //     this.beatsArray = JSON.parse(json);
+  //   } else {
+  //     this.beatsArray = json;
+  //   }
+  //   this.updateComponents();
+  // }
   
   getName() {
     return this.name;

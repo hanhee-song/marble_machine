@@ -61,7 +61,10 @@ class Line extends React.Component {
   }
   
   updateNotes() {
-    this.setState({ line: this.props.instrument.getLine(this.props.note) });
+    this.setState({
+      muted: this.props.instrument.isMuted(this.props.note),
+      line: this.props.instrument.getLine(this.props.note),
+    });
   }
   
   toggleMute() {
