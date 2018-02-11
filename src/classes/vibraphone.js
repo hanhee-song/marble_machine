@@ -6,6 +6,7 @@ class Vibraphone extends Instrument {
     // this.notesl
     this.setup();
     this.name = "Vibraphone";
+    this._preloadAudio();
   }
   
   setup() {

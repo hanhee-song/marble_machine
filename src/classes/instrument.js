@@ -15,20 +15,20 @@ class Instrument {
     // this.name;
   }
   
-  // _preloadAudio() {
-  //   Object.keys(this.sounds).forEach((note) => {
-  //     setTimeout(() => {
-  //       this.sounds[note].preload = "auto";
-  //       const vol = this.sounds[note].volume;
-  //       this.sounds[note].volume = 0.00;
-  //       this.sounds[note].play();
-  //       setTimeout(() => {
-  //         this.sounds[note].pause();
-  //         this.sounds[note].volume = vol;
-  //       }, 1000);
-  //     }, Math.random() * 2000);
-  //   });
-  // }
+  _preloadAudio() {
+    Object.keys(this.sounds).forEach((note) => {
+      setTimeout(() => {
+        this.sounds[note].preload = "auto";
+        const vol = this.sounds[note].volume;
+        this.sounds[note].volume = 0.00;
+        this.sounds[note].play();
+        setTimeout(() => {
+          // this.sounds[note].pause();
+          this.sounds[note].volume = vol;
+        }, 2000);
+      }, Math.random() * 2000);
+    });
+  }
   
   // DISPLAY FOR REACT COMPONENT =============================
   
