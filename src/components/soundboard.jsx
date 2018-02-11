@@ -27,6 +27,7 @@ class Soundboard extends React.Component {
     this.handleStop = this.handleStop.bind(this);
     this.handleResetAll = this.handleResetAll.bind(this);
     this.handleMmChange = this.handleMmChange.bind(this);
+    this.handlePreload = this.handlePreload.bind(this);
     this.handleUndo = this.handleUndo.bind(this);
     this.handleExport = this.handleExport.bind(this);
     this.compressState = this.compressState.bind(this);
@@ -147,6 +148,22 @@ class Soundboard extends React.Component {
   
   changeCurrentBeat(num) {
     this.setState({ currentBeat: num });
+  }
+  
+  handlePreload() {
+    // Warning: highly experimental feature
+    // This will make the instruments run the audio files a couple more
+    // times to tell Chrome that it should really cache those things
+    this.state.instruments.forEach(inst => {
+      inst._preloadAudio();
+      setTimeout(() => {
+        inst._preloadAudio();
+      }, 4000);
+    });
+    this.setPopup("Please wait 8 seconds for audio to cache");
+    setTimeout(() => {
+      this.setPopup("Done!");
+    }, 9000);
   }
   
   // UNDO ====================================================
@@ -299,6 +316,9 @@ class Soundboard extends React.Component {
           </div>
           <button className="control square button" onClick={this.handleExport}>
             <i className={`fa fa-upload`} aria-hidden="true"></i>
+          </button>
+          <button className="control square button" onClick={this.handlePreload}>
+            <i className={`fa fa-refresh`} aria-hidden="true"></i>
           </button>
         </div>
         

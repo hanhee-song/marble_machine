@@ -20,7 +20,7 @@ class Instrument {
       setTimeout(() => {
         this.sounds[note].preload = "auto";
         const vol = this.sounds[note].volume;
-        this.sounds[note].volume = 0.00;
+        this.sounds[note].volume = 0.001;
         this.sounds[note].play();
         setTimeout(() => {
           // this.sounds[note].pause();
