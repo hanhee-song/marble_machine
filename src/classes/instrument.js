@@ -95,20 +95,20 @@ class Instrument {
   
   addNote(note, beat) {
     if (!this.beatsArray[beat].includes(note)) {
-      this.historyPush();
+      this._historyPush();
       this.beatsArray[beat].push(note);
     }
   }
   
   removeNote(note, beat) {
     if (this.beatsArray[beat].includes(note)) {
-      this.historyPush();
+      this._historyPush();
       this.beatsArray[beat] = this.beatsArray[beat].filter(n => n !== note);
     }
   }
   
   clearAllNotes() {
-    this.historyPush();
+    this._historyPush();
     this.beatsArray = new Array(this.mm);
     for (var i = 0; i < this.beatsArray.length; i++) {
       this.beatsArray[i] = [];
@@ -117,7 +117,7 @@ class Instrument {
   
   // HISTORY ===========================================
   
-  historyPush() {
+  _historyPush() {
     const newEntry = {
       time: new Date().getTime(),
       state: deepCopy(this.beatsArray),

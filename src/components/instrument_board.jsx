@@ -1,7 +1,7 @@
 import React from 'react';
 import Line from './line';
 
-class DrumsBoard extends React.Component {
+class Instrument extends React.Component {
   constructor(props) {
     super(props);
     // this.props.currentBeat;
@@ -40,4 +40,4 @@ class DrumsBoard extends React.Component {
   }
 }
 
-export default DrumsBoard;
+export default Instrument;
