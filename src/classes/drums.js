@@ -4,12 +4,12 @@ class Drums extends Instrument {
   constructor(props) {
     super(props);
     // this.notes;
-    this.setup();
+    this._setup();
     this.name = "Drums";
     this._preloadAudio();
   }
   
-  setup() {
+  _setup() {
     this.notes = ["kick", "snare", "hat"];//, "crash"];
     this.notes.forEach((note) => {
       this.sounds[note] = new Audio(`audio/drums_${note}.wav`);

@@ -3,13 +3,13 @@ import Instrument from './instrument';
 class Vibraphone extends Instrument {
   constructor(props) {
     super(props);
-    // this.notesl
-    this.setup();
+    // this.notes
+    this._setup();
     this.name = "Vibraphone";
     this._preloadAudio();
   }
   
-  setup() {
+  _setup() {
     this.notes = [
       "0e", "0fs",
       "1g", "1a", "1b", "1c", "1d", "1e", "1fs",

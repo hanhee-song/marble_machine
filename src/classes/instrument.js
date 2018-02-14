@@ -183,6 +183,10 @@ class Instrument {
     }
   }
   
+  getName() {
+    return this.name;
+  }
+  
   // EXPORT ==================================================
   
   exportJSON() {
@@ -204,10 +208,6 @@ class Instrument {
     this.beatsArray = data.beatsArray;
     // convert muted back into a set
     this.muted = new Set(data.muted);
-  }
-  
-  getName() {
-    return this.name;
   }
 }
 
