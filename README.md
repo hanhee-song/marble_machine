@@ -16,7 +16,7 @@ The core mechanics of this client-side JavaScript app was built in 24 hours usin
 
 Marble Machine has been inspired by [Wintergatan](https://www.youtube.com/watch?v=IvUU8joBb1Q). As a musician myself (violin, piano, orchestra conducting, guitar, and bass) with prior experience in creating looped electronic/acoustic music, I set out to combine my passion for programming and my love for music in one app.
 
-#### Known Compatibility Issues
+##### Known Compatibility Issues
 
 * Does not work in Firefox due to the way Firefox handles (or rather, is unable to handle) a large number of concurrent audio files
 * Does not work with most Bluetooth audio devices for the same reason given above
@@ -25,33 +25,33 @@ Marble Machine has been inspired by [Wintergatan](https://www.youtube.com/watch?
 ## Instrument API
 The ```Instrument``` class has the following methods:
 
-#### ```constructor(mm)```
+##### ```constructor(mm)```
 
 Initialize the instrument by passing in a number of measures. This can be changed later.
 
-#### ```setMm(mm)```
+##### ```setMm(mm)```
 
 Changes the instrument's mm.
 
-#### ```getName()```
+##### ```getName()```
 
 Returns the instrument's name.
 
 ### Render methods
 
-#### ```allNotes()```
+##### ```allNotes()```
 
 Returns an array of all of its tones
 
-#### ```getNotes(beat)```
+##### ```getNotes(beat)```
 
 Returns all of the notes that it will play at a given beat
 
-#### ```getLine(note)```
+##### ```getLine(note)```
 
 Returns an array of booleans of length mm representing the presence of the given note. This is for the React line component.
 
-#### ```setUpdateComponentCallback(callback, note)```
+##### ```setUpdateComponentCallback(callback, note)```
 
 The Instrument will remember the given callback for the specific note. This is to allow components to force a rerender of the component that stores the instrument's notes in its state.
 
@@ -68,7 +68,7 @@ updateNotes() {
 this.props.instrument.setUpdateComponentCallback(this.updateNotes, this.props.note);
 ```
 
-#### ```updateComponents([note])```
+##### ```updateComponents([note])```
 
 The instrument will invoke all of its callbacks. If a note is passed in, the Instrument will invoke all the callbacks for the given note.
 
@@ -83,33 +83,33 @@ handleAddNote() {
 
 ### Interface methods
 
-#### ```addNote(note, beat)```
+##### ```addNote(note, beat)```
 
 Adds the note to the given beat.
 
-#### ```removeNote(note, beat)```
+##### ```removeNote(note, beat)```
 
 Removes the note from the given beat.
 
-#### ```playNote(note)```
+##### ```playNote(note)```
 
 Plays the note. This method is only for when the user is clicking on the GUI and expects audio feedback after placing a note.
 
-#### ```playAtBeat(beat)```
+##### ```playAtBeat(beat)```
 
 Plays all the notes at the given beat.
 
-#### ```clearAllNotes()```
+##### ```clearAllNotes()```
 
 Wipes the board clean.
 
 ### History
 
-#### ```getMostRecentHistory()```
+##### ```getMostRecentHistory()```
 
 Returns the timestamp of the most recent change.
 
-#### ```historyPop()```
+##### ```historyPop()```
 
 Undo the most recent change to the given instrument
 
@@ -164,26 +164,26 @@ handleUndo(e) {
 
 ### Mute
 
-#### ```mute([note])```
+##### ```mute([note])```
 
 Mutes all notes. If a note is given, mutes only the given note.
 
-#### ```unmute([note])```
+##### ```unmute([note])```
 
 Unmutes all notes. If a note is given, unmutes only the given note.
 
 
-#### ```isMuted([note])```
+##### ```isMuted([note])```
 
 Returns a boolean - true if all notes are muted and false if there is at least one unmuted note. If a note is given, returns a boolean for whether or not the given note is muted.
 
 ### Import/Export
 
-#### ```exportJSON()```
+##### ```exportJSON()```
 
 Exports its internal states as a stringified JSON.
 
-#### ```importJSON(json)```
+##### ```importJSON(json)```
 
 Takes in either a JSON or a stringified JSON and updates itself to the new data. Will break horribly if an invalid JSON is given.
 
