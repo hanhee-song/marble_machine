@@ -148,11 +148,11 @@ html {
   .soundboard-controls .control {
     height: 40px;
     background: none;
-    border-top: 2px solid #555;
-    border-bottom: 2px solid #555;
+    border-top: 2px solid #424242;
+    border-bottom: 2px solid #424242;
     color: #ccc;
-    transition: background .8s;
-    -webkit-transition: background .8s; }
+    transition: background .8s, color .8s;
+    -webkit-transition: background .8s, color .8s; }
   .soundboard-controls .square {
     width: 48px;
     text-align: center; }
@@ -162,11 +162,13 @@ html {
     font-size: 14px;
     text-rendering: optimizeSpeed; }
     .soundboard-controls .button:hover {
-      background-color: #555;
+      background-color: #3a3a3a;
+      color: #f5f5f5;
       transition: none;
       -webkit-transition: none; }
     .soundboard-controls .button:active {
-      background-color: #777;
+      background-color: #555;
+      color: #fff;
       padding-top: 1px;
       padding-left: 1px; }
   .soundboard-controls .input {
@@ -177,19 +179,20 @@ html {
     line-height: 36px;
     font-size: 20px; }
     .soundboard-controls .input:hover {
-      background-color: #555;
-      color: #ddd;
+      background-color: #3a3a3a;
+      color: #fff;
       transition: none;
       -webkit-transition: none; }
     .soundboard-controls .input:focus {
-      background-color: #555;
-      color: #ddd; }
+      background-color: #3a3a3a;
+      color: #fff; }
   .soundboard-controls .tempo-container {
     position: relative; }
     .soundboard-controls .tempo-container:hover {
       transition: none;
       -webkit-transition: none;
-      background-color: #444; }
+      background-color: #333;
+      color: #f5f5f5; }
     .soundboard-controls .tempo-container .tempo-title {
       text-align: center;
       font-size: 16px; }
@@ -221,14 +224,18 @@ html {
       transition: background .8s;
       -webkit-transition: background .8s; }
     .soundboard-controls .tempo-container:hover .tempo-slider::-webkit-slider-thumb {
-      background: #ccc; }
+      background: #eee;
+      transition: none;
+      -webkit-transition: none; }
     .soundboard-controls .tempo-container .tempo-slider::-moz-range-thumb {
       width: 18px;
       height: 18px;
       background: #bbb;
       cursor: pointer; }
     .soundboard-controls .tempo-container:hover .tempo-slider::-moz-range-thumb {
-      background: #ccc; }
+      background: #eee;
+      transition: none;
+      -webkit-transition: none; }
 
 /************* BEAT SLIDER **************/
 .beat-slider {
@@ -297,11 +304,11 @@ html {
   transition: none;
   width: 20px; }
   .soundboard-instruments .square:nth-of-type(8n + 3) {
-    border-left: 2px solid #aaa;
-    width: 22px; }
+    border-left: 2px solid #555;
+    width: calc(2px + $square-size); }
   .soundboard-instruments .square:nth-of-type(8n + 7) {
     border-left: 1px solid #454545;
-    width: 21px; }
+    width: calc(1px + $square-size); }
   .soundboard-instruments .square:last-of-type {
     border-right: 2px solid #aaa; }
   .soundboard-instruments .square.active {
