@@ -406,7 +406,7 @@ $square-size: 20px;
       width: calc(1px + $square-size);
     }
     
-    &:last-of-type { border-right: 2px solid #aaa; }
+    &:last-of-type { border-right: 2px solid #555; }
     
     &.active {
       background-color: #888;

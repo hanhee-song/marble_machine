@@ -310,7 +310,7 @@ html {
     border-left: 1px solid #454545;
     width: calc(1px + $square-size); }
   .soundboard-instruments .square:last-of-type {
-    border-right: 2px solid #aaa; }
+    border-right: 2px solid #555; }
   .soundboard-instruments .square.active {
     background-color: #888;
     transition: background 1s; }
