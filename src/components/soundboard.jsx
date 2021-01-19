@@ -38,11 +38,10 @@ class Soundboard extends React.Component {
   }
   
   componentDidMount() {
-    // const isNotChrome = !window.chrome || !window.chrome.webstore;
-    
-    // if (isNotChrome) {
+    const isChrome = !!window.chrome;
+    if (!isChrome) {
       this.setPopup("Please use Google Chrome for the best experience.");
-    // } else {
+    } else {
       const defaultString = "eyJ0ZW1wbyI6MjA0LCJtbSI6NjQsImluc3RydW1lbnRzIjp7IlZpYnJhcGhvbmUiOiJ7XCJtdXRlZFwiOltdLFwiYmVhdHNBcnJhecQSW1wiMGVcIixcIjFlXCJdLFtdLFtcIjLGEzJixQfEIcUXM2LHCccsyxvLMsYrYcxVXCIzZ84Z2jnPdMp9Z8ZSz0nLQMQeYcgeZMYQZOoA1ck6MsYcyDPJUekA3sgS1DLMfMde8gDe2TkyZnPOITDEEf0A4MpC+gDgXCIxxmLNZcc7xxvrAOHpAI/JG8wzzWDJPGP1AafbQecBCtF06ADo7wFM6ACtyEDnAdjpAkExY8gZyQnxApfoASXSK8hW5ADX7ADQyW/KRMkS6AFr9gHmxgnkAINdfSIsIkRydW1z/wNu5QNua2lja8c+aGF0xwpzbmFy6wN/xiQsyiLfJdUl12vLFccs0EPVN999/wCi2yX8AJrWRv8Aot990yXYZ/0Aht81+ADc2035ARnHGSzQR/UB7PcB2v8BNV19In19";
       let compressedString = this.props.location.pathname.slice(1);
       if (this.isValidEncodedJSON(compressedString)) {
@@ -52,7 +51,7 @@ class Soundboard extends React.Component {
         this.importData(JSON.parse(decompress(decodeBase64(defaultString))));
         this.props.history.push("/" + defaultString);
         this.setPopup("Loaded sample data");
-      // }
+      }
     }
     
   }
